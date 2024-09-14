@@ -1,0 +1,374 @@
+/*QuestÃ£o 1: Um funcionÃ¡rio de uma empresa recebe aumento salarial anualmente. 
+Sabe-se que:
+ a. Esse funcionÃ¡rio foi contratado em 2005, com salÃ¡rio inicial de R$ 1.000,00;
+ b. Em 2006 recebeu aumento de 1.5% sobre seu salÃ¡rio inicial;
+ c. A partir de 2007 (inclusive), os aumentos salariais sempre corresponderam ao dobro do percentual do ano anterior.
+ FaÃ§a um programa que determine o salÃ¡rio atual desse funcionÃ¡rio.
+*/
+
+#include <stdio.h>
+
+int main()
+{
+  int ano;
+  float money=1000;
+  float aumento=1.5;
+
+  money += money * (aumento/100);
+
+  printf("%.2f e 2006\n", money);
+
+  for(ano=2007; ano<=2024; ano++)
+   {
+     aumento *= 2;
+
+     money += money * (aumento/100);
+
+     printf("%.2f e %d\n", money, ano);
+
+     }
+}
+
+
+/*QuestÃ£o 2: FaÃ§a um programa que receba vÃ¡rios nÃºmeros, calcule e mostre:
+ a.A soma dos nÃºmeros digitados;
+ b.A quantidade de nÃºmeros digitados;
+ c.A mÃ©dia dos nÃºmeros digitados;
+ d.O maior nÃºmero digitado;
+ e.O menor nÃºmero digitado;
+ f.A mÃ©dia dos nÃºmeros pares;
+ g.A percentagem dos nÃºmeros Ã­mpares entre todos os nÃºmeros digitados.
+ Finalize a entrada de dados com a digitaÃ§Ã£o do nÃºmero 30000. Entende-se que o usuÃ¡rio
+ nÃ£o possa digitar valor maior que 30000.*/
+
+#include <stdio.h>
+
+int main()
+{
+  float num, soma = 0, somaPares = 0;
+  int count=0, countPares = 0, countImpares = 0;
+  float menor, maior;
+
+  printf("Digite alguns numeros separados por espaco (Digite 30000 para parar) \n\n");
+
+  while(1)
+  {
+    printf("Digite um numero: ");
+    scanf("%f", &num);
+
+    if (num > 30000)
+    {
+       printf("Numero invalido. Digite um numero menor ou igual a 29999.\n");
+       continue;
+    }
+
+    if(num==30000)
+	break;
+
+    soma += num;
+    count++;
+
+    if(count == 1)
+    {
+      menor = maior = num; 
+
+      } else {
+	       if(num<menor)
+		{
+		  menor = num;
+			}
+		if(num>maior)
+		  {
+		    maior = num;
+                       }
+               }
+
+	if ((int)num % 2 == 0)
+        {
+            somaPares += num;  
+            countPares++;     
+        }
+        else
+        {
+            countImpares++;   
+        }
+
+
+
+    }
+  float percentImpares = (float)countImpares / count * 100;
+  
+  printf("\nA soma dos numeros: %.2f\n", soma);
+  printf("A quantidade de numeros: %d\n", count);
+  printf("A media dos numeros: %.2f\n", soma/count);
+  printf("O menor numero digitado foi: %.2f\n", menor);
+  printf("O maior numero digitado foi: %.2f\n", maior);
+  printf("A percentagem dos numeros impares eh: %.2f%%\n", percentImpares);  
+
+	if (countPares > 0)
+        {
+            float mediaPares = somaPares / countPares;
+            printf("A media dos numeros pares eh: %.2f\n", mediaPares);
+        }
+        else
+        {
+            printf("Nenhum numero par foi digitado.\n");
+        }
+
+}
+
+
+/*QuestÃ£o 3: O fatorial de um inteiro nÃ£o negativo n Ã© escrito como n! (pronuncia-se â€œn 
+fatorialË®) e Ã© definido como segue:
+ n! î‚› n Â· (n î‚‰ 1î‚‚ Â· (n î‚‰ 2î‚‚ Â· ... Â· 1 (para valores de n maiores ou iguais a 1î‚‚ e n! î‚› 1 (para n î‚› 0î‚‚
+ Por exemplo, 5! î‚› 5 Â· 4 Â· 3 Â· 2 Â· 1, o que dÃ¡ 120.*/
+
+#include <stdio.h>
+
+int main()
+{
+    int num, i;
+    int fatorial = 1;
+
+    printf("Digite um numero inteiro positivo para calcular o fatorial: ");
+    scanf("%d", &num);
+
+
+    if (num < 0)
+    {
+        printf("Nao existe fatorial de numero negativo.\n");
+    }
+    else if (num == 0)
+    {
+        printf("O fatorial de 0 eh: 1\n");
+    }
+    else
+    {
+
+        for (i = 1; i <= num; i++)
+        {
+            fatorial *= i;
+        }
+
+        printf("O fatorial de %d eh: %d\n", num, fatorial);
+    }
+
+}
+
+
+/*QuestÃ£o 4: Escreva um aplicativo que solicita ao usuÃ¡rio que insira o tamanho do lado 
+de um quadrado e, entÃ£o, exibe um quadrado vazio desse tamanho com 
+asteriscos. Seu programa deve trabalhar com quadrados de todos os 
+comprimentos de lado possÃ­veis entre 1 e 20.*/
+
+#include <stdio.h>
+
+int main() {
+    int lado, i, j;
+
+    printf("Digite o tamanho do lado do quadrado (entre 1 e 20): ");
+    scanf("%d", &lado);
+
+
+    if (lado < 1 || lado > 20) {
+        printf("Tamanho invalido! O lado deve estar entre 1 e 20.\n");
+	return 1;
+    }
+
+    for (i = 1; i <= lado; i++) {
+        for (j = 1; j <= lado; j++) {
+
+            if (i == 1 || i == lado) {
+                printf("*");
+            }
+
+            else {
+                if (j == 1 || j == lado) {
+                    printf("*");
+                } else {
+                    printf(" ");
+                }
+            }
+        }
+        printf("\n");
+    }
+
+}
+
+
+/*QuestÃ£o 5: Escreva um aplicativo que localiza o menor de vÃ¡rios nÃºmeros inteiros. 
+Suponha que o primeiro valor lido especifica o nÃºmero de valores a serem 
+inseridos pelo usuÃ¡rio.*/
+
+#include <stdio.h>
+
+int main()
+{
+  int num, count=0, nx, menor;
+
+  printf("\nDigite o numero de valores que serao inseridos: ");
+  scanf("%d", &num);
+
+
+
+  for(count=0; count<num; count++){
+	printf("\nDigite um numero:");
+	scanf("%d", &nx);
+
+	if(nx<menor){
+	menor = nx;
+	}
+
+	}
+
+	printf("\nO menor numero eh: %d", menor);
+
+}
+
+
+/*QuestÃ£o 6: Escreva um aplicativo que calcula o produto dos nÃºmeros inteiros Ã­mpares 
+de 1 a 15.*/
+
+#include <stdio.h>
+
+int main()
+{
+  int produto=1, i;
+
+  for(i=1; i<15; i++){
+    if(i%2 !=0){produto*=i;}
+
+	}
+
+
+    printf("O produto de 1, 3, 5, 7, 9, 11 e 13 eh: %d", produto);
+
+
+}
+
+
+/*QuestÃ£o 7: Uma aplicaÃ§Ã£o interessante dos computadores Ã© exibir diagramas e grÃ¡ficos de barras.
+ Escreva um aplicativo que leia cinco nÃºmeros entre 1 e 30. Para cada 
+nÃºmero que Ã© lido, seu programa deve exibir o mesmo nÃºmero de 
+asteriscos adjacentes. Por exemplo, se seu programa lÃª o nÃºmero 7, ele 
+deve exibir *******. Exiba as barras dos asteriscos depois 
+de ler
+ os cinco nÃºmeros.*/
+
+#include <stdio.h>
+
+int main()
+{
+  int n1, n2, n3, n4, n5, count;
+
+  printf("\nDigite 5 numeros separados por espaco (entre 1 e 30): ");
+  scanf("%d %d %d %d %d", &n1, &n2, &n3, &n4, &n5);
+
+  if(n1<1 || n1>30 || n2<1 || n2>30 || n3<1 || n3>30 || n4<1 || n4>30 || n5<1 || n5>30)
+  {
+    printf("\n[ERRO]Informacoes Invalidas!\n");
+	}
+
+  else {
+
+	printf("%d=", n1);
+	for(count=0; count<n1; count++)
+	{
+	  printf("*");
+		}
+	printf("\n");
+
+	printf("%d=", n2);
+	for(count=0; count<n2; count++)
+	{
+	  printf("*");
+		}
+	printf("\n");
+
+	printf("%d=", n3);
+	for(count=0; count<n3; count++)
+	{
+	  printf("*");
+		}
+	printf("\n");
+
+	printf("%d=", n4);
+	for(count=0; count<n4; count++)
+	{
+	  printf("*");
+		}
+	printf("\n");
+
+	printf("%d=", n5);
+	for(count=0; count<n5; count++)
+	{
+	  printf("*");
+		}
+	printf("\n");
+
+
+	}
+
+}
+
+
+/*QuestÃ£o 8: Uma pessoa investe US$ 1.000 em uma conta-poupanÃ§a que rende juros 
+de 5% ao ano. Supondo que todo o juro seja aplicado, calcule e imprima a 
+quantia de dinheiro na conta no fim de cada ano por 10 anos. Utilize a 
+seguinte fÃ³rmula para determinar as quantidades:
+ a =p(1+r)n
+ onde
+ p Ã© a quantia original investida (isto Ã©, o principal)
+ r Ã© a taxa de juros anual (por exemplo, utilize 0,05 para 5%)
+ n Ã© o nÃºmero de anos
+ a Ã© a quantia em depÃ³sito no fim do n-Ã©simo ano.*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+  float a, p=1000, r=0.05; 
+  int n=10;
+ 
+  a = p* pow((1+r), n);
+
+  printf("O resultado eh: %.2f", a);
+
+
+}
+
+
+/*QuestÃ£o 9: O quadrado de um nÃºmero natural n Ã© dado pela soma dos n primeiros 
+nÃºmeros Ã­mpares consecutivos. Por exemplo, 1^2= 1,    2^2 = 1+3,     3^2 = 1+3+5
+Dado um nÃºmero n, calcule seu quadrado usando a soma de Ã­mpares ao 
+invÃ©s de produto.*/
+
+
+#include <stdio.h>
+
+int main()
+{
+  int n, i, imp=1;
+
+  printf("Digite um numero positivo maior que zero: ");
+  scanf("%d", &n);
+
+  if(n<=0){printf("[ERRO]Numero Invalido!");}
+
+  else{
+
+	printf("%d^2 = ",n);
+
+	printf("%d", imp);
+
+	for(i=2; i<=(2*n-1); i++)
+	 {
+	   if(i%2 != 0){printf("+%d", i);}  
+
+	   }
+	printf(" = %d", n*n);
+
+       }
+
+}

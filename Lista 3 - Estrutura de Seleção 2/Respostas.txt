@@ -1,0 +1,949 @@
+/*Questao 1: FaÃ§a um programa que receba quatro valores, I, A, B e C. I Ã© um valor inteiro e positivo e A, B, C 
+sÃ£o valores reais. Escreva os nÃºmeros A, B, e C obedecendo a tabela a seguir. Supondo que o 
+valor digitado para I seja sempre um valor vÃ¡lido, ou seja, 1, 2 ou 3.
+1= ordem crescente
+2= ordem decrescente
+3= o maior fica entre os dois numeros
+*/
+
+
+#include <stdio.h>
+
+int main()
+{
+  int i;
+  float a, b, c, aux;
+
+  printf("Digite os valores para I, A, B e C, separados por espaco (onde o valor de I tem que ser 1, 2 ou 3):");
+  scanf("%d %f %f %f", &i, &a, &b, &c);
+
+	if(a>b)
+	{
+	aux = b;
+	b = a;
+	a = aux;
+	}
+	if(a>c)
+	{
+	aux = a;
+	a= c;
+	c = aux;
+	}
+	if(b>c)
+	{
+	aux = b;
+	b = c;
+	c = aux;
+	}
+
+  switch(i)
+  {
+    case 1:
+	  printf("%.1f %.1f %.1f", a, b, c);
+	  break;
+	
+    case 2:
+	  printf("%.1f %.1f %.1f", c, b, a);
+	  break;
+
+    case 3:
+	  printf("%.1f %.1f %.1f", a, c, b);
+	  break;
+
+    default: printf("[ERRO]"); 
+
+
+     }
+
+}
+
+
+/*Questao 2:  FaÃ§a um programa que mostre o menu de opÃ§Ãµes a seguir, receba a opÃ§Ã£o do usuÃ¡rio e os 
+dados necessÃ¡rios para executar cada operaÃ§Ã£o.
+ Menu de opÃ§Ãµes:
+ a. O nÃºmero digitado ao quadrado.
+ b. O nÃºmero digitado ao cubo.
+ c. A raiz quadrada do nÃºmero digitado.
+ d. A raiz cÃºbica do nÃºmero digitado.
+*/
+
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+  int num;
+  float f1, f2, f3, f4;
+  char l;
+
+  printf("Digite uma letra entre a, b, c ou d:\n");
+  printf("A - O numero digitado ao quadrado\n");
+  printf("B - O numero digitado ao cubo\n");
+  printf("C - A raiz quadrada do numero digitado\n");
+  printf("D - A raiz cubida do numero digitado\n");
+  scanf("%c", &l);
+
+  printf("Agora um numero:\n");
+  scanf("%d", &num);
+
+  f1 = pow(num, 2);
+  f2 = pow(num, 3);
+  f3 = sqrt(num);
+  f4 = cbrt(num);
+
+
+  switch(l){
+    case 'a': printf("O resultado eh: %.0f", f1); break;
+
+    case 'b': printf("O resultado eh: %.0f", f2); break;
+
+    case 'c': printf("O resultado eh: %.0f", f3); break;   
+
+    case 'd': printf("O resultado eh: %.0f", f4); break;
+
+    default: printf("[ERRO]");
+
+   }
+
+}
+
+
+/*Questao 3: FaÃ§a um programa calculadora que mostre o menu de operaÃ§Ãµes (soma, subtraÃ§Ã£o, divisÃ£o, 
+multiplicaÃ§Ã£o, elevar ao um nÃºmero, raiz de qualquer Ã­ndice, resto), receba a opÃ§Ã£o do usuÃ¡rio 
+e os dados necessÃ¡rios para executar cada operaÃ§Ã£o. 
+*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+  int n3, n4;
+  float n1, n2;
+  char l;
+
+  printf("Digite uma letra para cada operacao:\n");
+  printf("A - Soma\n");
+  printf("B - Subtracao\n");
+  printf("C - Divisao\n");
+  printf("D - Multiplicacao\n");
+  printf("E - Elevar a um numero\n");
+  printf("F - Raiz quadrada de qualquer indice\n");
+  printf("G - Resto\n");
+  scanf("%c", &l);
+
+
+  switch(l){
+    case 'a': case 'A': 
+       printf("\nDigite dois numeros (separados por espaco) para a soma: \n");
+       scanf("%f %f", &n1, &n2);
+       printf("O resultado eh: %.0f\n", n1+n2);
+    break;
+
+    case 'b': case 'B': 
+       printf("\nDigite dois numeros (separados por espaco) para a subtracao: \n");
+       scanf("%f %f", &n1, &n2);
+       printf("O resultado eh: %.0f\n", n1-n2);
+    break;
+
+    case 'c': case 'C': 
+       printf("\nDigite dois numeros (separados por espaco) para a divisao: \n");
+       scanf("%f %f", &n1, &n2);
+       printf("O resultado eh: %.0f\n", n1/n2);
+    break;
+
+    case 'd': case 'D': 
+       printf("\nDigite dois numeros (separados por espaco) para a multiplicacao: \n");
+       scanf("%f %f", &n1, &n2);
+       printf("O resultado eh: %.0f\n", n1*n2);
+    break;
+
+    case 'e': case 'E': 
+       printf("\nDigite dois numeros (separados por espaco) onde o primeiro eh o numero e o segundo eh o expoente: \n");
+       scanf("%f %f", &n1, &n2);
+       printf("O resultado eh: %.0f\n", pow(n1, n2));
+    break;
+
+    case 'f': case 'F': 
+       printf("\nDigite dois numeros (separados por espaco) onde o primeiro eh o numero e o indice da raiz: \n");
+       scanf("%f %f", &n1, &n2);
+       printf("O resultado eh: %.0f\n", pow(n1, 1/n2));
+    break;
+
+    case 'g': case 'G': 
+       printf("\nDigite dois numeros (separados por espaco) para o calculo de resto: \n");
+       scanf("%d %d", &n3, &n4);
+       printf("O resultado eh: %d\n", n3%n4);
+    break;
+
+    default: printf("[ERRO]");
+
+   }
+
+
+}
+
+
+/*Questao 4: FaÃ§a um programa que receba a hora de inÃ­cio de um jogo e a hora final do jogo (cada hora Ã© 
+composta por duas variÃ¡veis inteiras: hora e minuto). Calcule e mostre a duraÃ§Ã£o do jogo 
+(horas e minutos) sabendo-se que o tempo mÃ¡ximo de duraÃ§Ã£o do jogo Ã© de 24 horas e que o 
+jogo pode iniciar em um dia e terminar no dia seguinte.
+*/
+
+#include <stdio.h>
+
+int main()
+{
+  int h1, h2, m1, m2, dh, dm;
+
+  printf("Digite a hora inicial do jogo (horas e minutos separados por espaco): \n");
+  scanf("%d %d", &h1, &m1);
+
+  printf("\nDigite a hora final do jogo (horas e minutos separados por espaco): \n");
+  scanf("%d %d", &h2, &m2);
+
+  if(h2<h1 || (h2==h1 && m2<m1)) {
+	h2 += 24;
+   }
+
+  dh = h2-h1;
+  dm = m2-m1;
+
+  if(dm<0){
+	dh--;
+	dm+=60;
+
+   }
+
+  printf("\nO jogo durou %d:%d", dh, dm);
+
+
+}
+
+
+/*Questao 5: FaÃ§a um programa que receba o cÃ³digo correspondente ao cargo de um funcionÃ¡rio e seu 
+salÃ¡rio atual e mostre o cargo, o valor do aumento e seu novo salÃ¡rio. Os cargos estÃ£o na 
+tabela a seguir.
+*/
+
+#include <stdio.h>
+
+int main()
+{
+  int code;
+
+  printf("Digite o numero correspondente a sua profissao: \n");
+  printf("1 - Escriturario\n");
+  printf("2 - Secretario\n");
+  printf("3 - Caixa\n");
+  printf("4 - Gerente\n");
+  printf("5 - Diretor\n");
+  scanf("%d", &code);
+
+  switch(code){
+
+	case 1:  printf("\nEscriturario tera aumento de 50%% no salario."); break;
+
+	case 2:  printf("\nSecretario tera aumento de 35%% no salario."); break;
+
+	case 3:  printf("nCaixa tera aumento de 20%% no salario."); break;
+
+	case 4:  printf("\nGerente tera aumento de 10%% no salario."); break;
+
+	case 5:  printf("\nDiretor nao tera aumento no salario."); break;
+
+	default: printf("\n[ERRO]");
+
+    }
+
+}
+
+
+/*Questao 6:  FaÃ§a um programa que apresente o menu de opÃ§Ãµes a seguir, permita ao usuÃ¡rio escolher a 
+opÃ§Ã£o desejada, receba os dados necessÃ¡rios para executar a operaÃ§Ã£o e mostre o resultado. 
+Verifique a possibilidade de opÃ§Ã£o invÃ¡lida e nÃ£o se preocupe com restriÃ§Ãµes como salÃ¡rio 
+negativo.
+Menu de opÃ§Ãµes:
+ 1. Imposto
+ 2. Novo SalÃ¡rio
+ 3. ClassificaÃ§Ã£o
+*/
+
+
+#include <stdio.h>
+
+int main()
+{
+  float sal;
+  int opcao;
+
+  printf("Digite um numero que responda as opcoes do seguinte menu: \n");
+  printf("1. Imposto\n");
+  printf("2. Novo Salario\n");
+  printf("3. Classificacao\n");
+  scanf("%d", &opcao);
+
+  switch(opcao){
+
+     case 1: 
+	printf("\nDigite seu salario: \n");
+	scanf("%f", &sal);
+
+	if(sal<500){printf("\nO valor do imposto sera de: R$%.2f \nNovo Salario: R$%.2f", sal*0.05, sal-sal*0.05);  }
+	
+	else if(sal<850){printf("\nO valor do imposto sera de: R$%.2f \nNovo Salario: R$%.2f", sal*0.1, sal-sal*0.1);}
+
+	else {printf("\nO valor do imposto sera de: R$%.2f \nNovo Salario: R$%.2f", sal*0.15, sal-sal*0.15);}
+
+	;break;
+
+     case 2:
+	printf("\nDigite seu salario: \n");
+	scanf("%f", &sal);
+
+	if(sal>=1500){printf("\nO Novo Salario sera de: R$%.2f\n", sal+25);}
+
+	else if(sal>=750){printf("\nO Novo Salario sera de: R$%.2f\n", sal+50);}
+
+	else if(sal>=450){printf("\nO Novo Salario sera de: R$%.2f\n", sal+75);}
+
+	else if(sal<450){printf("\nO Novo Salario sera de: R$%.2f\n", sal+100);}
+
+	else{printf("[ERRO]");}
+	;break;
+
+     case 3:
+	printf("\nDigite seu salario: \n");
+	scanf("%f", &sal);
+
+	if(sal<=750){printf("\nMal Remunerado!\n");}
+
+	else{printf("\nBem Remunerado!\n");}
+	;break;
+
+
+    default: printf("[ERRO]Opcao Invalida!");
+
+   }
+
+
+
+}
+
+
+/*Questao 7: FaÃ§a um programa que receba a altura e o peso de uma pessoa. De acordo com a tabela a 
+seguir verifique e mostre qual a classificaÃ§Ã£o dessa pessoa.
+*/
+
+#include <stdio.h>
+
+int main()
+{
+  float alt, peso;
+
+  printf("Digite sua altura (Ex:1.60): \n");
+  scanf("%f", &alt);
+
+  printf("Digite seu peso: \n");
+  scanf("%f", &peso);
+
+  if(alt<1.20 && peso<60){
+     printf("Classificacao A");
+   }
+
+  else if(alt<1.20 && peso>=60 && peso<90){
+     printf("Classificacao D");
+   }
+
+  else if(alt<1.20 && peso>=90){
+     printf("Classificacao G");
+   }
+
+  else if(alt>=1.20 && alt<1.70 && peso<=60){
+     printf("Classificacao B");
+   }
+
+  else if(alt>=1.20 && alt<1.70 && peso>=60 && peso<90){
+     printf("Classificacao E");
+   }
+
+  else if(alt>=1.20 && alt<1.70 && peso>=90){
+     printf("Classificacao H");
+   }
+
+  else if(alt>=1.70 && peso<60){
+     printf("Classificacao C");
+   }
+
+  else if(alt>=1.70 && peso>=60 && peso<90){
+     printf("Classificacao F");
+   }
+
+  else if(alt>=1.70 && peso>=90){
+     printf("Classificacao I");
+   }
+
+  else{printf("[ERRO]");}
+}
+
+
+/*Questao 8:  FaÃ§a um programa que receba:
+ a. O cÃ³digo de um produto comprado, supondo que a digitaÃ§Ã£o do cÃ³digo do produto seja 
+ sempre vÃ¡lida, ou seja, um nÃºmero inteiro entre 1 e 10;
+ b. O peso do produto em quilos;
+ c. O cÃ³digo do paÃ­s de origem, supondo que a digitaÃ§Ã£o do cÃ³digo do paÃ­s seja sempre vÃ¡lida, 
+ ou seja, um nÃºmero entre 1 e 3.
+ Tabelas:
+ Calcule e mostre:
+ O peso do produto convertido em gramas;
+ O preÃ§o total do produto comprado;
+ O valor do imposto, sabendo-se que o imposto Ã© cobrado sobre o preÃ§o total do produto 
+ comprado e que depende do paÃ­s de origem;
+ O valor total, preÃ§o total do produto mais imposto.
+*/
+
+#include <stdio.h>
+
+int main()
+{
+  int pais, code;
+  float kg, g;  
+
+  printf("Digite o codigo do pais(1 a 3): \n");
+  scanf("%d", &pais);
+
+  printf("\nDigite o codigo do produto (1 a 10): \n");
+  scanf("%d", &code);
+
+  printf("\nDigite o peso do produto em KG: \n");
+  scanf("%f", &kg);
+
+  g = kg*1000;
+
+  switch(pais){
+	case 1:
+	  if(code<=0 || code>10){printf("[ERRO]Codigo de Produto Invalido!");}
+
+	  else if(code>0 && code<5)
+	  {
+	    printf("Peso em gramas do produto: %.0fg\n", g);
+	    printf("Preco total do produto: R$%.2f\n", g*10);
+	    printf("Nao tera imposto sobre o produto.\n");
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", g*10);
+	   }
+
+	  else if(code<8)
+	  {
+	    printf("Peso em gramas do produto: %.0fg\n", g);
+	    printf("Preco total do produto: R$%.2f\n", g*25);
+	    printf("Nao tera imposto sobre o produto.\n");
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", g*25);
+	   }
+
+	  else if(code<11)
+	  {
+	    printf("Peso em gramas do produto: %.0fg\n", g);
+	    printf("Preco total do produto: R$%.2f\n", g*35);
+	    printf("Nao tera imposto sobre o produto.\n");
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", g*35);
+	   }
+
+	  ;break;
+
+	case 2:
+	  if(code<=0 || code>10){printf("[ERRO]Codigo de Produto Invalido!");}
+
+	  else if(code>0 && code<5)
+	  {
+	    printf("Peso em gramas do produto: %.0fg\n", g);
+	    printf("Preco total do produto: R$%.2f\n", g*10);
+	    printf("O imposto sobre o produto sera de 15%%, ou seja: R$%.2f.\n", (g*10)*0.15);
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", (g*10)+((g*10)*0.15));
+	   }
+
+	  else if(code<8)
+	  {
+	    printf("Peso em gramas do produto: %.0fg\n", g);
+	    printf("Preco total do produto: R$%.2f\n", g*25);
+	    printf("O imposto sobre o produto sera de 15%%, ou seja: R$%.2f.\n", (g*25)*0.15);
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", (g*25)+((g*25)*0.15));
+	   }
+
+	  else if(code<11)
+	  {
+	    printf("Peso em gramas do produto: %.0fg\n", g);
+	    printf("Preco total do produto: R$%.2f\n", g*35);
+	    printf("O imposto sobre o produto sera de 15%%, ou seja: R$%.2f.\n", (g*35)*0.15);
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", (g*35)+((g*35)*0.15));
+	   }
+
+	  ;break;
+
+	case 3:
+	  if(code<=0 || code>10){printf("[ERRO]Codigo de Produto Invalido!");}
+
+	  else if(code>0 && code<5)
+	  {
+	    printf("Peso em gramas do produto: %.0fg\n", g);
+	    printf("Preco total do produto: R$%.2f\n", g*10);
+	    printf("O imposto sobre o produto sera de 25%%, ou seja: R$%.2f.\n", (g*10)*0.25);
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", (g*10)+((g*10)*0.25));
+	   }
+
+	  else if(code<8)
+	  {
+	    printf("Peso em gramas do produto: %.0fg\n", g);
+	    printf("Preco total do produto: R$%.2f\n", g*25);
+	    printf("O imposto sobre o produto sera de 25%%, ou seja: R$%.2f.\n", (g*25)*0.25);
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", (g*25)+((g*25)*0.25));
+	   }
+
+	  else if(code<11)
+	  {
+	    printf("Peso em gramas do produto: %.0fg\n", g);
+	    printf("Preco total do produto: R$%.2f\n", g*35);
+	    printf("O imposto sobre o produto sera de 25%%, ou seja: R$%.2f.\n", (g*35)*0.25);
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", (g*35)+((g*35)*0.25));
+	   }
+
+	  ;break;
+
+	default: printf("[ERRO]Pais Invalido!");
+
+   }
+
+
+}
+
+
+/*Questao 9 e 10?: FaÃ§a um programa que receba:
+ a. O cÃ³digo do estado de origem da carga de um caminhÃ£o, supondo que a digitaÃ§Ã£o do 
+ cÃ³digo do estado seja sempre vÃ¡lida, ou seja, um nÃºmero inteiro entre 1 e 5;
+ b. O peso da carga do caminhÃ£o em toneladas;
+ c. O cÃ³digo da carga, supondo que a digitaÃ§Ã£o do cÃ³digo da carga seja sempre vÃ¡lida, ou 
+ seja, um nÃºmero inteiro entre 10 e 40.
+ Tabelas:
+ Calcule e mostre:
+ a. O peso da carga do caminhÃ£o convertido em quilos;
+ b. O preÃ§o da carga do caminhÃ£o;
+ c. O valor do imposto, sabendo-se que o imposto Ã© cobrado sobre o preÃ§o da carga do 
+ caminhÃ£o e que depende do estado de origem;
+ d. O valor total transportado pelo caminhÃ£o, carga mais imposto.
+*/
+
+#include <stdio.h>
+
+int main()
+{
+  int pais, code;
+  float t, kg;  
+
+  printf("Digite o codigo do Estado(1 a 5): \n");
+  scanf("%d", &pais);
+
+  printf("\nDigite o codigo do caminhao (10 a 40): \n");
+  scanf("%d", &code);
+
+  printf("\nDigite o peso do produto em Toneladas: \n");
+  scanf("%f", &t);
+
+  kg = t*1000;
+
+  switch(pais){
+	case 1:
+	  if(code<=9 || code>40){printf("[ERRO]Codigo de Produto Invalido!");}
+
+	  else if(code>9 && code<21)
+	  {
+	    printf("Peso em quilos da carga: %.0fKg\n", kg);
+	    printf("Preco total da carga: R$%.2f\n", kg*100);
+	    printf("O imposto sobre o produto sera de 35%%, ou seja: R$%.2f.\n", (kg*100)*0.35);
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", (kg*100)+((kg*100)*0.35));
+	   }
+
+	  else if(code<31)
+	  {
+	    printf("Peso em quilos da carga: %.0fKg\n", kg);
+	    printf("Preco total da carga: R$%.2f\n", kg*250);
+	    printf("O imposto sobre o produto sera de 35%%, ou seja: R$%.2f.\n", (kg*250)*0.35);
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", (kg*250)+((kg*250)*0.35));
+	   }
+
+	  else if(code<41)
+	  {
+	    printf("Peso em quilos da carga: %.0fKg\n", kg);
+	    printf("Preco total da carga: R$%.2f\n", kg*340);
+	    printf("O imposto sobre o produto sera de 35%%, ou seja: R$%.2f.\n", (kg*340)*0.35);
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", (kg*340)+((kg*340)*0.35));
+	   }
+
+	  ;break;
+
+	case 2:
+	  if(code<=9 || code>40){printf("[ERRO]Codigo de Produto Invalido!");}
+
+	  else if(code>9 && code<21)
+	  {
+	    printf("Peso em quilos da carga: %.0fKg\n", kg);
+	    printf("Preco total da carga: R$%.2f\n", kg*100);
+	    printf("O imposto sobre o produto sera de 25%%, ou seja: R$%.2f.\n", (kg*100)*0.25);
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", (kg*100)+((kg*100)*0.25));
+	   }
+
+	  else if(code<31)
+	  {
+	    printf("Peso em quilos da carga: %.0fKg\n", kg);
+	    printf("Preco total da carga: R$%.2f\n", kg*250);
+	    printf("O imposto sobre o produto sera de 25%%, ou seja: R$%.2f.\n", (kg*250)*0.25);
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", (kg*250)+((kg*250)*0.25));
+	   }
+
+	  else if(code<41)
+	  {
+	    printf("Peso em quilos da carga: %.0fKg\n", kg);
+	    printf("Preco total da carga: R$%.2f\n", kg*340);
+	    printf("O imposto sobre o produto sera de 25%%, ou seja: R$%.2f.\n", (kg*340)*0.25);
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", (kg*340)+((kg*340)*0.25));
+	   }
+
+	  ;break;
+
+	case 3:
+	  if(code<=9 || code>40){printf("[ERRO]Codigo de Produto Invalido!");}
+
+	  else if(code>9 && code<21)
+	  {
+	    printf("Peso em quilos da carga: %.0fKg\n", kg);
+	    printf("Preco total da carga: R$%.2f\n", kg*100);
+	    printf("O imposto sobre o produto sera de 15%%, ou seja: R$%.2f.\n", (kg*100)*0.15);
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", (kg*100)+((kg*100)*0.15));
+	   }
+
+	  else if(code<31)
+	  {
+	    printf("Peso em quilos da carga: %.0fKg\n", kg);
+	    printf("Preco total da carga: R$%.2f\n", kg*250);
+	    printf("O imposto sobre o produto sera de 15%%, ou seja: R$%.2f.\n", (kg*250)*0.15);
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", (kg*250)+((kg*250)*0.15));
+	   }
+
+	  else if(code<41)
+	  {
+	    printf("Peso em quilos da carga: %.0fKg\n", kg);
+	    printf("Preco total da carga: R$%.2f\n", kg*340);
+	    printf("O imposto sobre o produto sera de 15%%, ou seja: R$%.2f.\n", (kg*340)*0.15);
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", (kg*340)+((kg*340)*0.15));
+	   }
+
+	  ;break;
+
+	case 4:
+	  if(code<=9 || code>40){printf("[ERRO]Codigo de Produto Invalido!");}
+
+	  else if(code>9 && code<21)
+	  {
+	    printf("Peso em quilos da carga: %.0fKg\n", kg);
+	    printf("Preco total da carga: R$%.2f\n", kg*100);
+	    printf("O imposto sobre o produto sera de 5%%, ou seja: R$%.2f.\n", (kg*100)*0.05);
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", (kg*100)+((kg*100)*0.05));
+	   }
+
+	  else if(code<31)
+	  {
+	    printf("Peso em quilos da carga: %.0fKg\n", kg);
+	    printf("Preco total da carga: R$%.2f\n", kg*250);
+	    printf("O imposto sobre o produto sera de 5%%, ou seja: R$%.2f.\n", (kg*250)*0.05);
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", (kg*250)+((kg*250)*0.05));
+	   }
+
+	  else if(code<41)
+	  {
+	    printf("Peso em quilos da carga: %.0fKg\n", kg);
+	    printf("Preco total da carga: R$%.2f\n", kg*340);
+	    printf("O imposto sobre o produto sera de 5%%, ou seja: R$%.2f.\n", (kg*340)*0.05);
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", (kg*340)+((kg*340)*0.05));
+	   }
+
+	  ;break;
+
+	case 5:
+	  if(code<=9 || code>40){printf("[ERRO]Codigo de Produto Invalido!");}
+
+	  else if(code>9 && code<21)
+	  {
+	    printf("Peso em quilos da carga: %.0fKg\n", kg);
+	    printf("Preco total da carga: R$%.2f\n", kg*100);
+	    printf("Sera isento de impostos.\n");
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", kg*100);
+	   }
+
+	  else if(code<31)
+	  {
+	    printf("Peso em quilos da carga: %.0fKg\n", kg);
+	    printf("Preco total da carga: R$%.2f\n", kg*250);
+	    printf("Sera isento de impostos.\n");
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", kg*250);
+	   }
+
+	  else if(code<41)
+	  {
+	    printf("Peso em quilos da carga: %.0fKg\n", kg);
+	    printf("Preco total da carga: R$%.2f\n", kg*340);
+	    printf("Sera isento de impostos.\n");
+	    printf("Valor com acrescimo do imposto: R$%.2f\n", kg*340);
+	   }
+
+	  ;break;
+
+	default: printf("[ERRO]Pais Invalido!");
+
+   }
+
+
+}
+
+
+/*Questao 11: Desenvolva um programa em C que calcule a mÃ©dia ponderada de um aluno com base em 
+quatro notas e diferentes pesos atribuÃ­dos a cada nota. O usuÃ¡rio deve poder escolher um dos 
+trÃªs mÃ©todos de cÃ¡lculo de mÃ©dia:
+ a. MÃ©dia AritmÃ©tica Simples
+ b. MÃ©dia Ponderada com pesos especÃ­ficos
+ Use um switch para permitir ao usuÃ¡rio escolher o tipo de mÃ©dia a ser calculada e exiba o 
+ resultado final.
+ Exemplo de Entrada:
+ Notas: 
+ 8.0, 7.5, 9.0, 10.0
+ Pesos: 
+ 1, 2, 3, 4
+ MÃ©todo de CÃ¡lculo: 2 (MÃ©dia Ponderada)
+ Exemplo de SaÃ­da:
+ "A mÃ©dia ponderada Ã© 8.75."
+*/
+
+#include <stdio.h>
+
+int main()
+{
+  char metodo;
+  float n1, n2, n3, n4, n5, p1, p2, p3, p4, p5;
+  float ma, mp;
+
+  printf("Selecione o metodo: \n");
+  printf("A- Media Aritmetica Simples\n");
+  printf("B- Media Ponderada\n");
+  scanf(" %c", &metodo);
+
+  switch(metodo)
+  {
+    case 'a': case 'A':
+	printf("\nDigite suas notas separadas por espaco: \n");
+	scanf("%f %f %f %f", &n1, &n2, &n3, &n4);
+
+	ma = (n1+n2+n3+n4)/4;
+
+	printf("\nO resultado sera: %.2f\n", ma);
+	
+	;break;
+
+    case 'b': case 'B':
+	printf("\nDigite suas notas separadas por espaco: \n");
+	scanf("%f %f %f %f", &n1, &n2, &n3, &n4);
+
+	printf("\nDigite os respectivos pesos: \n");
+	scanf("%f %f %f %f", &p1, &p2, &p3, &p4);
+
+	mp = (n1*p1+n2*p2+n3*p3+n4*p4)/(p1+p2+p3+p4);
+
+	printf("\nO resultado sera: %.2f\n", mp);
+
+	;break;
+
+    default: printf("[ERRO]Opcao Invalida!");
+
+
+
+   }
+
+}
+
+
+/*Questao 12: Escreva um programa em C que funcione como um conversor de unidades. O programa deve 
+permitir a conversÃ£o entre diferentes unidades de temperatura (Celsius, Fahrenheit, Kelvin), 
+distÃ¢ncia (metros, quilÃ´metros, milhas), e tempo (segundos, minutos, horas). Use um 
+switch para determinar o tipo de conversÃ£o e as unidades de entrada e saÃ­da.
+ Exemplo de Entrada:
+ Tipo de conversÃ£o:  Temperatura
+ Unidade de origem:  Celsius
+ Unidade de destino:  Fahrenheit
+ Valor:  25
+ Exemplo de SaÃ­da: "25 Celsius Ã© equivalente a 77 Fahrenheit."
+*/
+
+#include <stdio.h>
+
+int main()
+{
+  int conv;
+  char unido, unidd;
+  float valor, final;
+
+  printf("Escolha um tipo de conversao: \n");  
+  printf("1- Temperatura\n");
+  printf("2- Distancia\n");
+  printf("3- Tempo\n");
+  scanf("%d", &conv);
+
+  switch(conv)
+  {
+        case 1: 
+            printf("Digite a unidade de origem: \n");
+            printf("A- Celsius\n");
+            printf("B- Fahrenheit\n");
+            printf("C- Kelvin\n");
+            scanf(" %c", &unido);
+
+            printf("Digite o valor: \n");
+            scanf("%f", &valor);
+            
+            printf("Digite a unidade de destino: \n");
+            printf("A- Celsius\n");
+            printf("B- Fahrenheit\n");
+            printf("C- Kelvin\n");
+            scanf(" %c", &unidd);
+
+            if (unido == unidd) {
+                printf("\n%.1f na unidade de origem eh equivalente a %.1f na unidade de destino.\n", valor, valor);
+            }
+            else if ((unido == 'a' || unido == 'A') && (unidd == 'b' || unidd == 'B')) {
+                final = valor * 1.8 + 32;
+                printf("\n%.1f Celsius eh equivalente a %.1f Fahrenheit.\n", valor, final);
+            }
+            else if ((unido == 'a' || unido == 'A') && (unidd == 'c' || unidd == 'C')) {
+                final = valor + 273.15;
+                printf("\n%.1f Celsius eh equivalente a %.1f Kelvin.\n", valor, final);
+            }
+            else if ((unido == 'b' || unido == 'B') && (unidd == 'a' || unidd == 'A')) {
+                final = (valor - 32) / 1.8;
+                printf("\n%.1f Fahrenheit eh equivalente a %.1f Celsius.\n", valor, final);
+            }
+            else if ((unido == 'b' || unido == 'B') && (unidd == 'c' || unidd == 'C')) {
+                final = (valor - 32) / 1.8 + 273.15;
+                printf("\n%.1f Fahrenheit eh equivalente a %.1f Kelvin.\n", valor, final);
+            }
+            else if ((unido == 'c' || unido == 'C') && (unidd == 'a' || unidd == 'A')) {
+                final = valor - 273.15;
+                printf("\n%.1f Kelvin eh equivalente a %.1f Celsius.\n", valor, final);
+            }
+            else if ((unido == 'c' || unido == 'C') && (unidd == 'b' || unidd == 'B')) {
+                final = (valor - 273.15) * 1.8 + 32;
+                printf("\n%.1f Kelvin eh equivalente a %.1f Fahrenheit.\n", valor, final);
+            }
+            else {
+                printf("\n[ERRO] Unidade de destino invalida.\n");
+            }
+            break;
+
+        case 2: 
+            printf("Digite a unidade de origem: \n");
+            printf("A- Metros\n");
+            printf("B- Quilometros\n");
+            printf("C- Milhas\n");
+            scanf(" %c", &unido);
+
+            printf("Digite o valor: \n");
+            scanf("%f", &valor);
+            
+            printf("Digite a unidade de destino: \n");
+            printf("A- Metros\n");
+            printf("B- Quilometros\n");
+            printf("C- Milhas\n");
+            scanf(" %c", &unidd);
+
+            if (unido == unidd) {
+                printf("%.1f na unidade de origem eh equivalente a %.1f na unidade de destino.\n", valor, valor);
+            }
+            else if ((unido == 'a' || unido == 'A') && (unidd == 'b' || unidd == 'B')) {
+                final = valor / 1000;
+                printf("%.1f Metros eh equivalente a %.1f Quilometros.\n", valor, final);
+            }
+            else if ((unido == 'a' || unido == 'A') && (unidd == 'c' || unidd == 'C')) {
+                final = valor / 1609.34;
+                printf("%.1f Metros eh equivalente a %.1f Milhas.\n", valor, final);
+            }
+            else if ((unido == 'b' || unido == 'B') && (unidd == 'a' || unidd == 'A')) {
+                final = valor * 1000;
+                printf("%.1f Quilometros eh equivalente a %.1f Metros.\n", valor, final);
+            }
+            else if ((unido == 'b' || unido == 'B') && (unidd == 'c' || unidd == 'C')) {
+                final = valor / 1.60934;
+                printf("%.1f Quilometros eh equivalente a %.1f Milhas.\n", valor, final);
+            }
+            else if ((unido == 'c' || unido == 'C') && (unidd == 'a' || unidd == 'A')) {
+                final = valor * 1609.34;
+                printf("%.1f Milhas eh equivalente a %.1f Metros.\n", valor, final);
+            }
+            else if ((unido == 'c' || unido == 'C') && (unidd == 'b' || unidd == 'B')) {
+                final = valor * 1.60934;
+                printf("%.1f Milhas eh equivalente a %.1f Quilometros.\n", valor, final);
+            }
+            else {
+                printf("[ERRO] Unidade de destino invalida.\n");
+            }
+            break;
+
+        case 3: 
+            printf("Digite a unidade de origem: \n");
+            printf("A- Segundos\n");
+            printf("B- Minutos\n");
+            printf("C- Horas\n");
+            scanf(" %c", &unido);
+
+            printf("Digite o valor: \n");
+            scanf("%f", &valor);
+            
+            printf("Digite a unidade de destino: \n");
+            printf("A- Segundos\n");
+            printf("B- Minutos\n");
+            printf("C- Horas\n");
+            scanf(" %c", &unidd);
+
+            if (unido == unidd) {
+                printf("%.1f na unidade de origem eh equivalente a %.1f na unidade de destino.\n", valor, valor);
+            }
+            else if ((unido == 'a' || unido == 'A') && (unidd == 'b' || unidd == 'B')) {
+                final = valor / 60;
+                printf("%.1f Segundos eh equivalente a %.1f Minutos.\n", valor, final);
+            }
+            else if ((unido == 'a' || unido == 'A') && (unidd == 'c' || unidd == 'C')) {
+                final = valor / 3600;
+                printf("%.1f Segundos eh equivalente a %.1f Horas.\n", valor, final);
+            }
+            else if ((unido == 'b' || unido == 'B') && (unidd == 'a' || unidd == 'A')) {
+                final = valor * 60;
+                printf("%.1f Minutos eh equivalente a %.1f Segundos.\n", valor, final);
+            }
+            else if ((unido == 'b' || unido == 'B') && (unidd == 'c' || unidd == 'C')) {
+                final = valor / 60;
+                printf("%.1f Minutos eh equivalente a %.1f Horas.\n", valor, final);
+            }
+            else if ((unido == 'c' || unido == 'C') && (unidd == 'a' || unidd == 'A')) {
+                final = valor * 3600;
+                printf("%.1f Horas eh equivalente a %.1f Segundos.\n", valor, final);
+            }
+            else if ((unido == 'c' || unido == 'C') && (unidd == 'b' || unidd == 'B')) {
+                final = valor * 60;
+                printf("%.1f Horas eh equivalente a %.1f Minutos.\n", valor, final);
+            }
+            else {
+                printf("[ERRO] Unidade de destino invalida.\n");
+            }
+            break;
+
+        default: printf("\n[ERRO] Tipo de conversao invalido.\n");
+
+
+   }
+
+
+}

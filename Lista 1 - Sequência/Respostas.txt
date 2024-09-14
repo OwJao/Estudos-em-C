@@ -1,0 +1,207 @@
+/*QuestÃ£o 1:
+FacÌ§a um programa que receba treÌ‚s notas e seus respectivos pesos, calcule e
+mostre a meÌdia ponderada dessas notas.*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+  float p1, p2, p3, n1, n2, n3, m;
+  
+  printf("Digite suas tres notas separadas por espaco:");
+  scanf("%f %f %f", &n1, &n2, &n3);
+  printf("Digite os pesos dessas notas em ordem e separadas por espaco:");
+  scanf("%f %f %f", &p1, &p2 ,&p3);
+  m = (p1*n1 + p2*n2 + p3*n3) / (p1+p2+p3);
+
+  printf("A media ponderada de %.1f, %.1f e %.1f tem resultado de %.1f", n1, n2, n3, m);
+}
+
+
+
+/*QuestÃ£o 2: 
+FaÃ§a um programa que calcule a distÃ¢ncia entre dois pontos no plano
+cartesiano .*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+  float x1, x2, y1, y2, d;
+  printf("Digite os valores do ponto 1:");
+  scanf("%f %f", &x1, &y1);
+  printf("Agora os valores do ponto 2:");
+  scanf("%f %f", &x2, &y2);
+  d = sqrt((x1-x2)*(x1-x2) + (y1-y2) * (y1-y2));
+  
+  printf("A distancia entre os pontos sera de %.1f", d);
+}
+
+
+
+/*QuestÃ£o 3:
+FaÃ§a um programa que receba o salÃ¡rio de um funcionÃ¡rio e o percentual
+de aumento, calcule e mostre o valor do aumento e o novo salÃ¡rio.*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+  float sal, percen, aumen, novosal;
+  
+  printf("Digite seu salario:");
+  scanf("%f", &sal);
+  printf("Digite o percentual de aumento em decimal:");
+  scanf("%f", &percen);
+  aumen = sal * percen;
+  novosal = sal + aumen;
+
+  printf("O valor do aumento sera de %.1f e o novo salario sera de %.1f", aumen, novosal);
+}
+
+
+
+/*QuestÃ£o 4:
+FaÃ§a um programa que receba o valor de um depÃ³sito e o valor da taxa de
+juros, calcule e mostre o valor do rendimento e o valor total depois do
+rendimento.*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+  float js, c, i, t, m, rend;
+
+  printf("Digite seu salario:");
+  scanf("%f", &c);
+  printf("Digite a taxa em %%:"); 
+  scanf("%f", &i);
+  printf("Digite o tempo em meses:");
+  scanf("%f", &t);
+  js = c * i * t;
+  m = c * pow((1 + i), t);
+  rend = c + js;
+
+  printf("O resultado em: \nJuros Simples: %.2f \nJuros Compostos = %.2f", rend, m);
+}
+
+
+
+/*QuestÃ£o 5:
+FacÌ§a um programa que receba um nuÌmero positivo e maior que zero,
+calcule e mostre:
+a. O nuÌmero digitado ao quadrado.
+b. O nuÌmero digitado ao cubo.
+c. A raiz quadrada do nuÌmero digitado.
+d. A raiz cuÌbica do nuÌmero digitado.
+*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+  int num, a, b, c, d;
+  printf("Digite um numero maior que 0:");
+  scanf("%d", &num);
+
+  if (num>0)
+  {  
+    a = num * num;
+    b = num * num * num;
+    c = sqrt(num);
+    d = cbrt(num);
+    printf("O resultado de: \nA = %d \nB = %d \nC = %d \nD = %d", a, b, c, d);
+
+  } else
+  {
+     printf("Numero digitado menor que zero.");
+  }
+
+}
+
+
+
+/*QuestÃ£o 6:
+Pedro comprou um saco de raÃ§Ã£o com peso em quilos. Ele possui dois
+gatos, para os quais fornece a quantidade de raÃ§Ã£o em gramas. A
+quantidade diÃ¡ria de raÃ§Ã£o fornecida para cada gato Ã© sempre a mesma.
+FaÃ§a um programa que receba o peso do saco de raÃ§Ã£o e a quantidade de
+raÃ§Ã£o fornecida para cada gato, calcule e mostre quanto restarÃ¡ de raÃ§Ã£o
+no saco apÃ³s cinco dias.*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+  float kg, g, racao, final;
+  printf("Digite quantos Kg de racao Pedro comprou:");
+  scanf("%f", &kg);
+  
+  if (kg <= 0)
+  {
+     printf("Numero invalido!");
+   }
+  else
+  {
+     g = kg * 1000;
+     racao = 100;
+     final = g - (200 * 5) ; 
+
+     printf("Restante de racao apos cinco dias: %.0fg \nPois os dois gatos ficam com 200g por dia, 100g para cada gato,      resultando em 1kg a cada 5 dias", final);
+   }
+
+}
+
+
+
+/*QuestÃ£o 7:
+ Escreva um aplicativo que insere um nÃºmero consistindo em cinco dÃ­gitos 
+do usuÃ¡rio, separa o nÃºmero em seus dÃ­gitos individuais e imprime os 
+dÃ­gitos separados uns dos outros por trÃªs espaÃ§os cada. Por exemplo, se o 
+usuÃ¡rio digitar o nÃºmero 42339, o programa deve imprimir:
+ 4   2   3   3   9.*/
+
+//precisei da ajuda do chatgpt professor
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+  int num;
+
+  printf("Digite um numero de cinco digitos e positivos:");
+  scanf("%d", &num);
+  printf("%d   %d   %d   %d   %d", (num / 10000) % 10, (num / 1000) % 10, (num / 100) % 10, (num / 10) % 10, num % 10);
+
+ }
+
+
+
+/*QuestÃ£o 8:
+ Escreva um programa que leia a quantidade em segundos e imprima o 
+resultado em dias, horas, minutos e segundos.*/
+
+//coloquei uma contagem de ano tbm
+
+#include <stdio.h>
+
+int main()
+{
+   float num, dia, hrs, min, anos;
+
+   printf("Digite um numero:");
+   scanf("%f", &num);
+   dia = num / 86400;
+   hrs = num / 3600;
+   min = num / 60;
+   anos = num / 31536000;
+   
+   printf("O numero digitado em: \nSegundos: %.0f \nMinutos: %.0f \nHoras: %.0f \nDias: %.0f \nAnos: %.0f", num, min, hrs,    dia, anos);
+ }

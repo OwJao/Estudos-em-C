@@ -1,0 +1,370 @@
+/*QuestÃ£o 1: Considere que o perfil de uma pessoa pode ser determinado a partir da sua
+data de nascimento, conforme exemplificado a seguir. Data uma data de
+nascimento, informe o perfil correspondente.*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+  int data1, data2, ano, p1, p2, res, fim;
+
+  printf("Digite sua data de nascimento separando dois grupos de quatro digitos por um espaco:");
+  scanf("%d %d", &data1, &data2);
+
+  ano = data1 + data2;
+  p1 = ano/100;
+  p2 = ano % 10;
+  res = p1 + p2;
+  fim = res % 5;
+
+  if(fim == 0)
+  {
+   printf("Timido"); 
+
+    }
+  if(fim == 1)
+   {
+    printf("Sonhador"); 
+
+     }
+  if(fim == 2)
+   {
+    printf("Paquerador"); 
+
+     }
+  if(fim == 3)
+   {
+    printf("Atraente"); 
+
+     }
+  if(fim == 4)
+   {
+    printf("Irresistivel");
+
+     }
+
+}
+
+
+/*QuestÃ£o 2: A nota final de um estudante Ã© calculada a partir de trÃªs notas atribuÃ­das
+respectivamente a um trabalho de laboratÃ³rio, a uma avaliaÃ§Ã£o semestral e
+a um exame final. A mÃ©dia das trÃªs notas mencionadas anteriormente
+obedece aos pesos a seguir:
+
+Trabalho laboratÃ³rio = 2
+AvaliaÃ§Ã£o = 3
+Exame final = 5
+
+FaÃ§a um programa que receba as trÃªs notas, calcule e mostre a mÃ©dia
+ponderada e o conceito que segue a tabela abaixo:
+*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+  float n1, n2, n3, p1, p2, p3, mp;
+
+  p1 = 2;
+  p2 = 3;
+  p3 = 5;
+
+  printf("Digite suas tres notas separadas por espaco:");
+  scanf("%f %f %f", &n1, &n2, &n3);
+
+  mp = (p1*n1 + p2*n2 + p3*n3)/(p1 + p2 + p3);
+  if (mp > 8 && mp < 10){
+    printf("A media ponderada das notas (%.1f, %.1f, %.1f) sera: %.1f \nE o conceito sera: A", n1, n2, n3, mp);
+}
+ else if (mp > 7){
+    printf("A media ponderada das notas (%.1f, %.1f, %.1f) sera: %.1f \nE o conceito sera: B", n1, n2, n3, mp);
+}
+
+ else if (mp > 6){
+    printf("A media ponderada das notas (%.1f, %.1f, %.1f) sera: %.1f \nE o conceito sera: C", n1, n2, n3, mp);
+}
+ else if (mp > 5){
+    printf("A media ponderada das notas (%.1f, %.1f, %.1f) sera: %.1f \nE o conceito sera: D", n1, n2, n3, mp);
+}
+ else if (mp > 0){
+    printf("A media ponderada das notas (%.1f, %.1f, %.1f) sera: %.1f \nE o conceito sera: E", n1, n2, n3, mp);
+}
+  else {
+   printf("ERRO");
+}
+
+}
+
+
+/*QuestÃ£o 3: FaÃ§a um programa que receba trÃªs notas de um aluno, calcule e mostre a
+mÃ©dia aritmÃ©tica e a mensagem que segue a tabela abaixo.
+if media<3 Ã© reprovado
+if media<7 Ã© exame
+if media>=7 Ã© aprovado
+
+*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+  float n1, n2, n3, m;
+
+  printf("Digite suas tres notas separadas por espaco:");
+  scanf("%f %f %f", &n1, &n2, &n3);
+
+  m = (n1+n2+n3) / 3;
+
+  if(m >= 7){
+   printf("A media sera: %.1f \nAprovado", m);
+}
+  else if(m < 7 && m > 3){
+   printf("A media sera: %.1f \nExame", m);
+}
+  else if(m < 3){
+   printf("A media sera: %.1f \nReprovado", m);
+}
+  else {
+  printf("ERRO");
+}
+
+
+
+
+}
+
+
+/*QuestÃ£o 4: FaÃ§a um programa que receba dois nÃºmeros e mostre o maior.*/
+
+#include <stdio.h>
+
+int main()
+{
+  float n1, n2;
+
+  printf("Digite dois numeros separados por espaco:");
+  scanf("%f %f", &n1, &n2);
+
+  if(n1>n2){
+   printf("%.1f Maior que %.1f", n1, n2);
+}
+  else if(n2>n1){
+   printf("%.1f Maior que %.1f", n2, n1);
+}
+  else if(n1==n2){
+   printf("Os dois numeros sao iguais");
+}
+  else {printf("ERRO");}
+
+
+
+
+}
+
+
+/*QuestÃ£o 5: FaÃ§a um programa que receba trÃªs nÃºmeros e mostre-os em ordem
+decrescente.*/
+
+#include <stdio.h>
+
+int main()
+{
+  float n1, n2, n3;
+
+  printf("Digite tres numeros separados por espaco:");
+  scanf("%f %f %f", &n1, &n2, &n3);
+
+  if(n1>n2 && n1>n3 && n2>n3){
+   printf("%.1f  %.1f  %.1f", n1, n2, n3);
+}
+  else if(n1>n2 && n1>n3 && n3>n2){
+   printf("%.1f  %.1f  %.1f", n1, n3, n2);
+}
+  else if(n2>n1 && n2>n3 && n1>n3){
+   printf("%.1f  %.1f  %.1f", n2, n1, n3);
+}
+  else if(n2>n1 && n2>n3 && n3>n1){
+   printf("%.1f  %.1f  %.1f", n2, n3, n1);
+}
+  else if(n3>n1 && n3>n2 && n1>n2){
+   printf("%.1f  %.1f  %.1f", n3, n1, n2);
+}
+  else if(n3>n1 && n3>n2 && n2>n1){
+   printf("%.1f  %.1f  %.1f", n3, n2, n1);
+}
+  else {printf("ERRO");}
+
+
+
+}
+
+
+/*QuestÃ£o 6: FaÃ§a um programa que receba trÃªs nÃºmeros obrigatoriamente em ordem e
+um quarto nÃºmero que nÃ£o siga esta regra. Mostre, em seguida, os quatro
+nÃºmeros em ordem decrescente.*/
+
+#include <stdio.h>
+
+int main()
+{
+  float n1, n2, n3, n4;
+
+  printf("Digite quatro numeros, porem os tres primeiros tem que ser em ordem:");
+  scanf("%f %f %f %f", &n1, &n2, &n3, &n4);
+
+  if(n3>n2 && n3>n1 && n2>n1 && n4>n3){
+   printf("%.1f  %.1f  %.1f  %.1f", n4, n3, n2, n1);
+}
+  else if(n3>n2 && n3>n1 && n2>n1 && n4<n1){
+   printf("%.1f  %.1f  %.1f  %.1f", n3, n2, n1, n4);
+}
+  else{printf("[ERRO] Numero da sequencia invalido!");}
+
+
+
+}
+
+
+/*QuestÃ£o 7: FaÃ§a um programa que determine a data cronologicamente maior de duas 
+datas fornecidas pelo usuÃ¡rio. Cada data deve ser fornecida por trÃªs 
+valores inteiros, onde o primeiro representa o dia, o segundo o mÃªs e o 
+terceiro o ano.*/
+
+#include <stdio.h>
+
+int main()
+{
+
+  int dia, mes, ano;
+  int dia2, mes2, ano2;
+
+  printf("\n\nDigite a primeira data: dia(entre 1 e 31), mes(entre 1 e 12) e ano. Valores separados por espaco:");
+  scanf("%d %d %d", &dia, &mes, &ano);
+
+  printf("\n\nAgora a segunda data: dia(entre 1 e 31), mes(entre 1 e 12) e ano. Valores separados por espaco:");
+  scanf("%d %d %d", &dia2, &mes2, &ano2);
+
+  if(ano>ano2){
+     printf("A data maior e mais recente: %d/%d/%d", dia, mes, ano);
+
+  } 
+  
+  else if(ano==ano2){
+       if(mes>mes2){
+          printf("A data maior e mais recente: %d/%d/%d", dia, mes, ano);
+
+       }
+
+       else if(mes==mes2){
+            if(dia>dia2){
+               printf("A data maior e mais recente: %d/%d/%d", dia, mes, ano);
+
+            }
+
+            else if(dia==dia2){
+               printf("As datas sao iguais!");
+
+            }
+
+            else {
+               printf("A data maior e mais recente: %d/%d/%d", dia2, mes2, ano2);
+
+            }
+
+
+       }
+
+       else {
+          printf("A data maior e mais recente: %d/%d/%d", dia2, mes2, ano2);
+
+       }
+
+
+   } 
+
+  else {
+     printf("A data maior e mais recente: %d/%d/%d", dia2, mes2, ano2);
+
+    }
+
+}
+
+
+
+/*QuestÃ£o 8: Um supermercado deseja reajustar os preÃ§os de seus produtos usando o 
+seguinte critÃ©rio: o produto poderÃ¡ ter seu preÃ§o aumentado ou diminuÃ­do. 
+Para alterar o preÃ§o o produto deve preencher pelo menos um dos 
+requisitos a seguir:
+
+FaÃ§a um programa que receba o preÃ§o atual e a venda mensal mÃ©dia do 
+produto, calcule e mostre o novo preÃ§o.*/
+
+
+#include <stdio.h>
+
+int main() {
+    float pa, np;
+    int vmm;
+
+    printf("Digite o preco atual do produto: ");
+    scanf("%f", &pa);
+    printf("Digite a venda mensal media do produto: ");
+    scanf("%d", &vmm);
+
+    if (vmm < 500 && pa < 30) {
+        np = pa * 1.10;
+    } 
+    else if (vmm >= 500 && vmm < 1200 && pa >= 30 && pa < 80) {
+        np = pa * 1.15;
+    } 
+    else if (vmm >= 1200 && pa >= 80) {
+        np = pa * 0.80;
+    } 
+    else {
+        np = pa;
+    }
+
+    printf("O novo preco do produto sera: %.2f\n", np);
+
+}
+
+
+
+/*QuestÃ£o 9: Dados trÃªs valores X, Y e Z, verificar se eles podem ser os comprimentos dos lados de um triÃ¢ngulo e, se forem, verificar se Ã© um triÃ¢ngulo equilÃ¡tero, isÃ³sceles ou escaleno. Se eles nÃ£o formarem um triÃ¢ngulo escrever uma mensagem. Considerar que:
+ â€¢ O comprimento de cada lado de um triÃ¢ngulo Ã© menor que a soma dos outros dois lados;
+ â€¢ Chama-se triÃ¢ngulo equilÃ¡tero o triÃ¢ngulo que tem trÃªs lados iguais;
+ â€¢ Chama-se triÃ¢ngulo isÃ³sceles o triÃ¢ngulo que tem o comprimento de dois lados iguais;
+ â€¢ Chama-se triÃ¢ngulo escaleno o triÃ¢ngulo que tem os trÃªs lados diferentes.*/
+
+#include <stdio.h>
+
+int main()
+{
+    float x, y, z;
+
+    printf("Digite tres valores separados por espaco:");
+    scanf("%f %f %f", &x, &y, &z);
+
+    if (x < y + z && y < x + z && z < x + y)
+    {
+        if (x == y && y == z)
+        {
+            printf("Equilatero");
+        }
+        else if (x == y || y == z || x == z)
+        {
+            printf("Isosceles");
+        }
+        else
+        {
+            printf("Escaleno");
+        }
+    }
+    else
+    {
+        printf("Nao e um triangulo");
+    }
+}
