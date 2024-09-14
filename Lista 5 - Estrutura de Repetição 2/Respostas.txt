@@ -1,0 +1,322 @@
+/*Questao 1*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	int num, voltar;
+	char perg;
+	float  n1, n2, n3, n4, aux1, aux2;
+	
+	INICIO:
+	system("cls");
+	printf("O que quer fazer? \n\nA- Criptografar Senha \nB- Descriptografar Senha \n\n");
+	scanf(" %c", &perg);
+	
+	switch(perg){
+		system("cls");
+		case 'a': case 'A':
+	
+			printf("\nDigite uma senha de 4 digitos (numeros de 0 a 9): ");
+			scanf("%d", &num);
+
+			n1 = num/1000;
+			n2 = (num/100)%10;
+			n3 = (num%100)/10;
+			n4 = (num%100)%10;
+
+			n1+=7;
+			n1/=10;
+	
+			n2+=7;
+			n2/=10;
+	
+			n3+=7;
+			n3/=10;
+	
+			n4+=7;
+			n4/=10;
+
+			aux1 = n1;
+			n1 = n3;
+			n3 = aux1;
+	
+			aux2 = n2;
+			n2 = n4;
+			n4 = aux2;
+	
+			printf("Senha Criptografada:  %.1f | %.1f | %.1f | %.1f ", n1, n2, n3, n4);
+			break;
+	
+		case 'b': case 'B':
+			system("cls");
+			printf("\nDigite os 4 digitos criptografados (separados por espaco): ");
+			scanf("%f %f %f %f", &n1, &n2, &n3, &n4);
+			
+			n1*=10;
+			n1-=7;
+			
+			n2*=10;
+			n2-=7;
+			
+			n3*=10;
+			n3-=7;
+			
+			n4*=10;
+			n4-=7;
+			
+			aux1 = n1;
+			n1 = n3;
+			n3 = aux1;
+	
+			aux2 = n2;
+			n2 = n4;
+			n4 = aux2;
+			
+			printf("Senha Descriptografada:  %.0f | %.0f | %.0f | %.0f", n1, n2, n3, n4);
+			break;
+
+
+		default: printf("[ERRO]Opcao Invalida!"); exit(1);
+	}
+	
+	INICIO2:
+	printf("\n\nDeseja recomecar? (1-Sim) (2-Nao)");
+	scanf("%d", &voltar);
+	
+	switch(voltar){
+		case 1: goto INICIO;
+			break;
+		case 2: exit(1);
+			break;
+		default: printf("[ERRO] Opcao Invalida!\n"); exit(1);
+	}
+	return 0;
+}
+
+
+/*Questao 2*/
+//A 2 foi em grupo
+    printf("\n\nProgama Calcular Desvio de Padrao: \n");
+
+    int n_tamanho = 0, variavel_x, aux = 0;
+    float somatorio_do_xlinha = 0,desvio_padrao=0, somatorio_normal=0;
+
+    printf("\nDigite o indice final 'n' (tamanho): ");
+    scanf("%d", &n_tamanho);
+
+    printf("\n");
+
+    for(int i=0; i < n_tamanho; i++){
+
+        printf("Digite um algarismo, para a varivel 'x' no indice %d: ", i);
+        scanf("%d", &variavel_x);
+
+        while (variavel_x >= 10)
+        {
+            printf("\n\tDigite um numero valido no indice %d (0 a 9): ", i);
+            scanf("%d", &variavel_x);
+            printf("\n");
+        }
+        somatorio_do_xlinha += variavel_x;
+
+        aux += variavel_x*(pow(10,n_tamanho-(i+1)));
+    } 
+
+    somatorio_do_xlinha = somatorio_do_xlinha / n_tamanho;
+
+    for(int j = 0; j < n_tamanho; j++){
+
+        aux %= (int)pow(10,n_tamanho-j);
+        somatorio_normal += pow(aux / (int)pow(10, n_tamanho - (j + 1)) - somatorio_do_xlinha, 2);
+    }
+
+    desvio_padrao = sqrt(somatorio_normal/(n_tamanho-1));
+
+    printf("\nDesvio padrao %f", desvio_padrao);
+
+//A 2 foi em grupo
+
+
+/*Questao 3*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main(){
+	int vezes, debaixo, i=0;
+	float x;
+	
+	printf("Digite as vezes que o programa vai rodar: ");
+	scanf("%d", &vezes);
+	
+		
+		for(debaixo=1; debaixo<vezes; debaixo+=2){
+		
+		x+= pow(-1, i)*(4.0/debaixo);
+		
+		i++;
+		}
+		
+		
+	
+		
+		printf("%.5f", x);
+	
+	
+	
+	 //+ou- 188000 vezes
+	return 0;
+}
+
+
+/*Questao 4*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main(){
+	int vezes, i, j;
+	float soma = 1.0;
+	
+	printf("Digite as vezes que o programa vai rodar: ");
+	scanf("%d", &vezes);
+	
+	for(i = 1; i <= vezes; i++){
+		int fatorial = 1.0;
+		
+		for(j = 1; j <= i; j++){
+			fatorial *= j;
+		}
+		
+		soma += 1.0/fatorial;
+	}
+	
+	printf("%f", soma);
+	
+	
+	
+	return 0;
+}
+
+/*Questao 5*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main(){
+
+    printf("\nPrograma do cosseno\n");
+
+    int aux = 2, n = 10;
+    double cosx = 1.0, x;
+
+    printf("\nDigite x: ");
+    scanf("%lf", &x);
+
+    for(int i = 1; i <= n; i++){
+        int divisor = 1; 
+
+
+        for(int j = 1; j <= aux; j++){
+            divisor = j;
+        }
+
+        int sign = (i % 2 == 0) ? 1 : -1;
+
+        cosx += (sign pow(x, aux)) / divisor;
+
+        aux += 2;
+    }
+
+    printf("Valor aproximado de cos(%.1lf) = %.4lf\n", x, cosx);
+}
+
+
+/*Questao 6*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main(){
+    printf("\n\nCalculo de Raiz Babilonico (Metodo de Heron): \n");
+
+    int valor_n;
+    float k = 1;
+
+    printf("\nInsira o valor para ser calculado pelo Metodo de Heron: ");
+    scanf("%d", &valor_n);
+
+    float raiz_quad = sqrt(valor_n);
+
+    printf("\n\tA raiz de %d e igual %.4f\n\n", valor_n, raiz_quad);
+
+    for(int i =1; i < 13; i++){
+
+        k = (k+(valor_n/k))/2;
+
+        printf("No processo %d a raiz seguindo o metodo de heron e igual a %.4f \n", i, k );
+    }
+}
+
+
+/*Questao 7*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main(){
+	int n, i;
+	int a=1, b=1, proximo;
+	
+	printf("Digite o valor de n (n >= 3): ");
+	scanf("%d", &n);
+	
+	if (n == 1 || n == 2)
+		printf("O termo (%d) inserido se refere ao: 1\n", n);
+	
+	else{
+		for (i = 3; i <= n; i++){
+			proximo = a+b;
+			a = b;
+			b = proximo;
+		}
+		
+		
+		printf("O termo (%d) inserido, na serie de Fibonacci se refere a: %d", n, b);
+	}
+	
+	
+	return 0;
+}
+
+
+/*Questao 8*/
+
+#include <stdio.h>
+#include <math.h>
+
+int main(){
+
+    printf("Detector de numero primo\n");
+
+    int numero, primo = 1;
+
+    printf("Digite seu numero: ");
+    scanf("%d", &numero);
+
+    for(int i = 2; i <= sqrt(numero); i++){
+        if(numero % i == 0){
+            primo = 0;
+            break;
+        }
+    }
+
+    if (primo){
+        printf("O numero eh primo");
+    }
+    else{
+        printf("O numero nao eh primo");
+    }
+}
