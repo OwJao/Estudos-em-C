@@ -1,0 +1,478 @@
+/*Questao 1*/
+
+#include <stdio.h>
+
+int numero_massa(int x){
+	if(x>0)
+	return printf("1");
+	
+	if(x<0)
+	return printf("0");
+}
+
+int main(){
+	int num;
+	
+	printf("Digite o numero: ");
+	scanf("%d", &num);
+	
+	numero_massa(num);
+	
+	
+	return 0;
+}
+
+
+/*Questao 2*/
+
+#include <stdio.h>
+
+int numero_massa(int x, int y){
+	
+	int soma=0;
+	
+	int i;
+	
+	for(i=x+1; i<y; i++){
+		soma+=i;
+	}
+	
+	return soma;
+}
+
+int main(){
+	int n1, n2;
+	
+	printf("Digite um numero: ");
+	scanf("%d", &n1);
+	printf("Digite outro numero: ");
+	scanf("%d", &n2);
+	
+	printf("Resultado: %d", numero_massa(n1, n2));
+	
+	
+	return 0;
+}
+
+
+/*Questao 3*/
+
+#include <stdio.h>
+
+int numero_massa(int x, int y, int z){
+	
+	if(x<=1)
+		return 0;
+	
+	int soma=0;
+	int soma2=0;
+	int i;
+	
+	for(i=y+1; i<z; i++){
+		
+		if(i%x==0)
+		soma+=i;
+		
+	}
+	
+	return soma;
+}
+
+int main(){
+	int n1, n2, n3;
+	
+	printf("Digite um numero maior que 1 para (A): ");
+	scanf("%d", &n1);
+	printf("Digite um numero para (B): ");
+	scanf("%d", &n2);
+	printf("Digite um numero para (C): ");
+	scanf("%d", &n3);
+	
+	printf("Resultado: %d", numero_massa(n1, n2, n3));
+	
+	
+	return 0;
+}
+
+
+/*Questao 4*/
+
+#include <stdio.h>
+
+int tempo(int x){
+	int tempo_seg = x;
+	int tempo_min= x / 60;
+	int tempo_hora = x / 3600;
+	int tempo_dia = x / 86400;
+	int tempo_ano = x / 31536000;
+	
+	
+	return printf("Segundos: %d \nMinutos: %d \nHoras: %d \nDias: %d \nAnos: %d", tempo_seg, tempo_min, tempo_hora, tempo_dia, tempo_ano);
+}
+
+int main(){
+	int seg;
+	
+	printf("Digite um tempo em segundos: ");
+	scanf("%d", &seg);
+	
+	tempo(seg);
+	
+	return 0;
+}
+
+
+/*Questao 5*/
+
+#include <stdio.h>
+
+float calculo(float x, float y){
+	float formula = ((y-x)/x) * 100;
+	
+	return formula;
+}
+
+int main(){
+	float inicial, final;
+	
+	printf("Digite o salario inicial: ");
+	scanf("%f", &inicial);
+	printf("Digite o salario final: ");
+	scanf("%f", &final);
+	
+	printf("Aumento de: %.1f%%", calculo(inicial, final));
+	
+	return 1;
+}
+
+
+/*Questao 6*/
+
+#include <stdio.h>
+
+float escolaridade(float x, float y, float z, char ope){
+	float res;
+	
+	switch (ope){
+		case 'a': case 'A':
+			return res = (x+y+z)/ 3;
+			break;
+		case 'p': case'P':
+			return res = (5*x+3*y+2*z)/ 10;
+			break;
+	}
+	
+	return res;
+}
+
+
+int main(){
+	float n1, n2, n3;
+	char ope;
+	
+	printf("Digite a primeira nota: ");
+	scanf("%f", &n1);
+	printf("Digite a segunda nota: ");
+	scanf("%f", &n2);
+	printf("Digite a terceira nota: ");
+	scanf("%f", &n3);
+	printf("Agora selecione o metodo: \nA- Media Aritmetica \nP- Media Ponderada");
+	scanf(" %c", &ope);
+	
+	printf("Resultado: %.2f", escolaridade(n1, n2, n3, ope));
+	
+	return 0;
+}
+
+
+/*Questao 7*/
+
+#include <stdio.h>
+
+int retangulo(int m, int n){
+	int i, j;
+	
+	for(i=1; i<=m; i++){
+		
+		
+		for(j=2; j<=n; j++){
+			printf("* ");
+		}
+		
+		printf("*\n");
+	}
+	
+	
+}
+
+int main(){
+	int altura, largura;
+	
+	printf("Digite a altura do retangulo: ");
+	scanf("%d", &altura);
+	printf("Digite a largura do retangulo: ");
+	scanf("%d", &largura);
+	
+	retangulo(altura, largura);
+	
+	
+}
+
+
+/*Questao 8*/
+
+#include <stdio.h>
+
+int cpf(int n){
+	int n1, n2, n3, n4, n5, n6, n7, n8, n9;
+	int d1, d1_soma, d1_mult;
+	int d2, d2_soma, d2_mult;
+	
+	n1 = n/100000000;
+	n2 = (n/10000000)%10;
+	n3 = (n/1000000)%10;
+	n4 = (n/100000)%10;
+	n5 = (n/10000)%10;
+	n6 = (n/1000)%10;
+	n7 = (n/100)%10;
+	n8 = (n%100)/10;
+	n9 = n%10;
+	
+	//digito 1
+	d1_soma = n1+n2+n3+n4+n5+n6+n7+n8+n9;
+	d1_mult = (d1_soma/10) * (d1_soma%10);
+	
+	d1 = (d1_mult%10) - (d1_mult/10);
+	
+	if(d1 < 0)
+		d1=0;
+		
+	//digito 2
+	d2_soma = n1+n2+n3+n4+n5+n6+n7+n8+n9+d1;
+	d2_mult = (d2_soma/10) * (d2_soma%10);
+	
+	d2 = (d2_mult%10) - (d2_mult/10);
+	
+	if(d2 < 0)
+		d2=0;
+	
+	if(n<100000000)	
+		return printf("CPF Completo: 0%d-%d%d", n, d1, d2);
+	
+	else
+		return printf("CPF Completo: %d-%d%d", n, d1, d2);
+}
+
+int main(){
+	int num;
+	
+	printf("Digite os 9 primeiros digitos do cpf: ");
+	scanf("%d", &num);
+	
+	cpf(num);
+	
+}
+
+/*Questao 9*/
+
+#include <stdio.h>
+
+int histograma(int t1, int t2, int t3, int t4, int t5, int t6, int t7){
+		
+	int a, b, c, d, e, f, g;
+	
+	printf("\n");
+	
+	printf("Domingo: ");
+	for(a=1; a<=t1; a++){
+		printf("%c", 254);
+	} printf("\n");
+	
+	printf("Segunda: ");
+	for(b=1; b<=t2; b++){
+		printf("%c", 254);
+	} printf("\n");
+	
+	printf("Terca:   ");
+	for(c=1; c<=t3; c++){
+		printf("%c", 254);
+	} printf("\n");
+	
+	printf("Quarta:  ");
+	for(d=1; d<=t4; d++){
+		printf("%c", 254);
+	} printf("\n");
+	
+	printf("Quinta:  ");
+	for(e=1; e<=t5; e++){
+		printf("%c", 254);
+	} printf("\n");
+	
+	printf("Sexta:   ");
+	for(f=1; f<=t6; f++){
+		printf("%c", 254);
+	} printf("\n");
+	
+	printf("Sabado:  ");
+	for(g=1; g<=t7; g++){
+		printf("%c", 254);
+	} printf("\n");
+	
+	
+}
+
+int main(){
+	int dom, seg, ter, qua, qui, sex, sab;
+	
+	printf("Digite a temperatura de Domingo em Graus Celsius: ");
+	scanf("%d", &dom);
+	printf("Digite a temperatura de Segunda em Graus Celsius: ");
+	scanf("%d", &seg);
+	printf("Digite a temperatura de Terca em Graus Celsius: ");
+	scanf("%d", &ter);
+	printf("Digite a temperatura de Quarta em Graus Celsius: ");
+	scanf("%d", &qua);
+	printf("Digite a temperatura de Quinta em Graus Celsius: ");
+	scanf("%d", &qui);
+	printf("Digite a temperatura de Sexta em Graus Celsius: ");
+	scanf("%d", &sex);
+	printf("Digite a temperatura de Sabado em Graus Celsius: ");
+	scanf("%d", &sab);
+	
+	if(dom > 50 || dom <0 || seg > 50 || seg <0 || ter > 50 || ter <0 || qua > 50 || qua <0 || qui > 50 || qui <0 || sex > 50 || sex <0 || sab > 50 || sab <0)
+		return printf("\nValor Invalido!!");
+	
+	histograma(dom, seg, ter, qua, qui, sex, sab);
+	
+}
+
+
+/*Questao 10*/
+
+#include <stdio.h>
+
+#define pi 3.14
+
+int main(){
+	float area, raio, diametro;
+	
+	printf("Digite o diametro(em cm) do Circulo para calcular a Area: ");
+	scanf("%f", &diametro);
+	
+	raio = diametro / 2;
+	
+	//Macro de Pi aqui embaixo
+	area = pi*(raio*raio);
+	
+	printf("Area: %.2fcm^2", area);
+}
+
+
+/*Questao 11*/
+
+#include <stdio.h>
+
+#define quad(n) (n*n)
+
+int main(){
+	int num;
+	
+	printf("Digite numero para calcular ele ao quadrado: ");
+	scanf("%d", &num);
+	
+	//Macro aqui embaixo
+	printf("Resultado: %d", quad(num));
+}
+
+
+/*Questao 12*/
+
+#include <stdio.h>
+
+int bissexto(int ano){
+	if(ano % 400 == 0){
+		printf("1");
+	}
+	else if(ano % 100 == 0){
+		printf("0");
+	}
+	else if(ano % 4 == 0){
+		printf("1");
+	}
+	else { 
+		printf("0");
+	}
+	
+}
+
+int main(){
+	int num;
+	
+	printf("Digite o ano para saber se eh bissexto: ");
+	scanf("%d", &num);
+	
+	bissexto(num);
+		
+}
+
+
+/*Questao 13*/
+
+#include <stdio.h>
+
+#define multiplo(a, b) if(a%b==0) return printf("Eh multiplo"); else return printf("Nao eh multiplo"); ;
+
+int main(){
+	int n1, n2;
+	
+	printf("Digite n1 para saber se eh multiplo de n2: ");
+	scanf("%d", &n1);
+	
+	printf("Digite n2: ");
+	scanf("%d", &n2);
+	
+	multiplo(n1, n2);
+}
+
+
+/*Questao 14*/
+
+#include <stdio.h>
+
+#define IS_VOGAL(c) if(c=='a' || c=='e' || c=='i' || c=='o' || c=='u') printf("Isso eh uma vogal!"); \
+					else if(c=='b' || c=='c' || c=='d' || c=='f' || c=='g' || c=='h' || c=='j' || c=='k' || c=='l' || c=='m' || c=='n' || c=='p' || c=='q' || c=='r' || c=='s' || c=='t' || c=='v' || c=='w' || c=='x' || c=='y' || c=='z') printf("Boaaa!!! Isso eh uma consoante!!!");\
+					else if(c=='B' || c=='C' || c=='D' || c=='F' || c=='G' || c=='H' || c=='J' || c=='K' || c=='L' || c=='M' || c=='N' || c=='P' || c=='Q' || c=='R' || c=='S' || c=='T' || c=='V' || c=='W' || c=='X' || c=='Y' || c=='Z') printf("Boaaa!!! Isso eh uma consoante!!!");\
+					else printf("Caractere Invalido!");
+					
+	
+	
+
+int main(){
+	char caractere;
+	
+	printf("Digite uma letra para saber se eh consoante: ");
+	scanf(" %c", &caractere);
+	
+	IS_VOGAL(caractere);
+	
+}
+
+
+/*Questao 15*/
+
+#include <stdio.h>
+
+#define abs(n) if(n>0) printf("O valor absoluto de %d eh %d (porque %d esta a %d unidades de distancia do zero).", n, n, n, n); \
+					else if(n<0) printf("O valor absoluto de %d eh %d (porque %d esta a %d unidades de distancia do zero).", n, n*(-1), n, n*(-1)); \
+					else if (n==0) printf("O valor absoluto de 0 eh 0 (porque esta a 0 unidades de distancia do zero).");
+	
+	
+
+int main(){
+	int num;
+	
+	printf("Digite um numero inteiro: ");
+	scanf("%d", &num);
+	
+	abs(num);
+}
