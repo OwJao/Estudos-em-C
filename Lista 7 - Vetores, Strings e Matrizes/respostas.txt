@@ -1,0 +1,741 @@
+/*Questao 1*/
+ W = 17,0,9,0,47,9,56,78,0
+
+
+/*Questao 2*/
+#include <stdio.h>
+
+int main(){
+	int w[5];
+	int i, j;
+	
+	for(i=0; i<5; i++){
+		printf("Digite um numero para n%d:", i);
+		scanf("%d", &w[i]);
+	}
+	
+	for(j=i-1; j>=0; j--){
+		printf("%d ", w[j]);
+	}
+}
+
+
+/*Questao 3*/
+#include <stdio.h>
+
+int main(){
+	int valores[5], n, i;
+	
+	printf("Quantia em R$: ");
+	scanf("%d", &n);
+	if(n!=0){
+		valores[0] = n/100;
+		n %= 100;
+	
+		valores[1] = n/50;
+		n%= 50;
+	
+		valores[2] = n/10;
+		n%= 10;
+	
+		valores[3] = n/5;
+		n%= 5;
+	
+		valores[4] = n/1;
+			
+		}
+		
+	else
+		return 0;
+	
+	for(i=0; i<5; i++){
+		if(valores[i]!=0){
+			
+			switch(i){
+		
+			case 0: 
+				printf("%d cedulas de R$100\n\n", valores[0]);
+				break;
+			
+			case 1:
+				printf("%d cedulas de R$50\n\n", valores[1]);
+				break;
+			
+			case 2: 
+				printf("%d cedulas de R$10\n\n", valores[2]);
+				break;
+			
+			case 3: 
+				printf("%d cedulas de R$5\n\n", valores[3]);
+				break;
+			
+			case 4: 
+				printf("%d cedulas de R$1\n\n", valores[4]);
+				break;
+			}
+			
+		}
+	
+	
+	}
+}
+
+
+/*Questao 4*/
+#include <stdio.h>
+void minimax(int n, float v[], float *a, float *b){
+    *a=v[0];
+    *b=v[0];
+    for(int i=0; i<n; i++){
+        if(v[i] < *a)
+            *a=v[i];
+        if(v[i] > *b)
+            *b=v[i];
+        
+    }
+}
+
+
+int main(){
+    int t;
+    float y=0, x=0;
+    
+    printf("Digite o tamanho do seu vetor: ");
+    scanf("%d", &t);
+    
+    float v[t];
+    printf("Digite os valores:\n");
+    for(int i=0; i<t; i++){
+        printf("Valor %d: ", i+1);
+        scanf("%f", &v[i]);
+    }
+    printf("------------------\n");
+    minimax(t, v, &x, &y);
+    printf("Valor minimo: %.2f\n", x);
+    printf("Valor maximo: %.2f", y);
+    
+    return 0;
+}
+
+
+/*Questão 5*/
+#include <stdio.h>
+
+void carrega(float *v, int num){
+	int i;
+	
+	for(i=0; i<num; i++){
+		printf("\nDigite o %d%c valor: ", i+1, 248);
+		scanf("%f", v + i);
+	}
+	
+}
+
+
+int main(){
+	int n, i;
+	
+	printf("Digite o tamanho do vetor: ");
+	scanf("%d", &n);
+	
+	float vetor[n];
+	
+	carrega(vetor, n);
+	
+	printf("\n");
+	
+	for(i=0; i<n; i++){
+		printf("%.2f ", vetor[i]);
+	}
+	
+	printf("\n");
+	
+}
+
+
+/*Questão 6*/
+#include <stdio.h>
+
+void puts2(char *frase, int num){
+	int i;
+	
+	for(i=0; i<num; i++){
+		if(frase[i]!='\0')
+		printf("%c", *(frase+i));
+		
+		else break;
+	}
+	printf("\n");
+}
+
+
+int main(){
+	int n, i;
+	
+	printf("Digite o tamanho da sua frase: ");
+	scanf("%d", &n);
+	
+	char f[n];
+	
+	printf("Digite sua bendita frase rapaz: ");
+	getchar();
+	fgets(f, n, stdin);
+	
+	puts2(f, n);
+	
+	return 0;
+}
+
+
+/*Questão 7*/
+#include <stdio.h>
+#include <string.h>
+
+void fcopy(char *f1, char *f2){
+	int i;
+	int num = strlen(f1);
+	
+	for(i=0; i<num; i++){
+		if(f1[i]!='\0'){	
+			
+			f2[i] = f1[i];
+			
+			*(f1+i);
+		}
+		
+		else break;
+	}
+	
+	printf("%s", f2);
+	
+}
+
+
+int main(){
+	int i, n;
+	
+	printf("Digite o tamanho da sua frase: ");
+	scanf("%d", &n);
+	
+	char frase1[n], frase2[n];
+	
+	printf("Digite sua frase: ");
+	getchar();
+	fgets(frase1, n, stdin);
+	
+	printf("\n");
+	
+	fcopy(frase1, frase2);
+	
+	return 0;
+}
+
+
+/*Questão 8*/
+#include <stdio.h>
+#include <stdio.h>
+
+void qtds(char *f){
+	int i;
+
+	while(f[i]!='\0'){
+		i++;
+	}
+	
+	printf("A frase '%s' tem %d caracteres", f, i);
+}
+
+int main(){
+	char frase[256];
+	
+	printf("Digite uma frase: ");
+	fgets(frase, 256, stdin);
+	
+	int i=0;
+
+	//a bomba do fgets vem com um \n incluso de natureza, isso é pra remover
+	while (frase[i] != '\0') i++;
+	if (frase[i - 1] == '\n') {
+        frase[i - 1] = '\0';
+    }
+
+	qtds(frase);
+	
+	return 0;
+}
+
+
+/*Questão 9*/
+#include <stdio.h>
+#include <stdio.h>
+
+void strgato(char *f1, char *f2){
+	
+	printf("%s%s", f1, f2);
+	
+}
+
+int main(){
+	char frase1[256], frase2[256];
+	
+	printf("Digite a frase 1: ");
+	fgets(frase1, 256, stdin);
+	
+	printf("Digite a frase 2: ");
+	fgets(frase2, 256, stdin);
+	
+	int i=0, j=0;
+
+	//a bomba do fgets vem com um \n incluso de natureza, isso é pra remover
+	while (frase1[i] != '\0') i++;
+	if (frase1[i - 1] == '\n') {
+        frase1[i - 1] = '\0';
+    }
+
+	while (frase2[j] != '\0') j++;
+	if (frase2[j - 1] == '\n') {
+        frase2[j - 1] = '\0';
+    }
+	
+	printf("\nA frase resultante de '%s' e '%s' esta logo abaixo: \n\n", frase1, frase2);
+	
+	strgato(frase1, frase2);
+	
+	return 0;
+}
+
+
+/*Questão 10*/
+#include <stdio.h>
+
+int strpos(char *s, char *c) {
+    
+    int i=0;
+    while(*s){
+        if(*s==*c)
+            return i;
+
+    i++;
+    s++;
+    }
+       return -1;
+    
+
+}
+
+int main() {
+    char x[20] = "Amigos do bem";  
+    char y[20] = "d";
+
+    printf("Chamando a funcao strpos: %d\n", strpos(x, y));  
+    
+    return 0;
+}
+
+
+/*Questão 11*/
+#include <stdio.h>
+void strdel(char *s, char *p){
+   while(*s){
+        if(*s==*p){
+           char *del= s;
+           
+           while(*del){
+               *del=*(del + 1);
+                del++;
+           }
+        }
+    s++;
+    }
+}
+
+int main(){
+    char x[20]="delete";
+    char y[20]="e";
+    
+    strdel(x, y);
+    printf("Chamando a funcao strdel para remover o caracter 'e' da palavra delete: %s", x);
+    return 0;
+}
+
+
+/*Questão 12*/
+#include <stdio.h>
+#define t 3
+
+int main(){
+   int mat[t][t];
+    printf("\tDigite os valores da matriz:\n");
+    for(int i=0; i<t; i++){
+       for(int j=0; j<t; j++){
+           printf(" Posicao [%d][%d]: ",i, j);
+           scanf("%d", &mat[i][j]);
+       }
+   }
+   printf("\n------------------------");
+    printf("\nImprimindo a matriz: \n");
+     for(int i=0; i<t; i++){
+         printf("\t");
+       for(int j=0; j<t; j++){
+           printf("%d ", mat[i][j]);
+       }
+       printf("\n");
+   }
+   printf("------------------------");
+   printf("\nDiagonal da Matriz: \n");
+   for(int i=0; i<t; i++){
+       for(int j=0; j<t; j++){
+           if(j==i)
+           printf(" %d ", mat[i][j]);
+       }
+   }
+   
+}
+
+
+/*Questão 13*/
+#include <stdio.h>
+#define t 3
+
+int main(){
+   char mat[t][t]={'\0','o','x','o','x','o','x','\0','\0'};
+
+   printf("\nJogo da velha: \n\n");
+   
+   for(int i=0; i<t; i++){
+       for(int j=0; j<t; j++){
+           if(mat[i][j]=='\0'){
+               printf("  ");
+           }else{
+               printf(" %c", mat[i][j]);
+           }
+           if(j < t - 1)
+               printf(" |");
+       }
+       printf("\n");
+           if(i< t - 1)
+                printf("---|---|---\n");
+   }
+   
+}
+
+
+/*Questão 14 e 16*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+/*  Celula
+    eBomba 0 ou 1
+    estaAberta 0 ou 1
+    vizinhos 0 ou 4
+*/
+    
+typedef struct{
+    int eBomba;
+    int estaAberta;
+    int vizinhos;
+}Celula;
+
+//variaveis globais
+Celula jogo [10] [10];
+int l, c, tam = 10;
+
+//procedimento para inicializar a matriz do jogo
+void inicializarJogo(){
+    for(l=0; l < tam; l++){
+        for(c=0; c < tam; c++){
+            jogo[l][c].eBomba = 0;
+            jogo[l][c].estaAberta = 0;
+            jogo[l][c].vizinhos = 0;
+            
+        }
+    }
+    
+}
+//procedimento para sortear n bombas
+void sortearBombas(int n){
+     int i = 0;
+    srand(time(NULL));
+
+    while(i < n){
+        l = rand() % tam;
+        c = rand() % tam;
+        
+        // Coloca a bomba apenas se a posição ainda não tiver uma, 
+        //verifica para garantir as 10 bombas sem repetir indices
+        if(jogo[l][c].eBomba == 0){
+            jogo[l][c].eBomba = 1;
+            i++;  // Incrementa i somente quando uma nova bomba é colocada
+        }
+    }
+}
+
+/*
+    funcao que diz se um par de coordenados e valido ou nao(ex: se for negativo)
+    se retornar 1 e valido
+    se retornar 0 nao e valida
+*/
+int coordenadaEhValida(int l, int c){
+    if(l >= 0 && l < tam && c >=0 && c < tam)
+        return 1;
+    else 
+        return 0;
+}
+
+/*  
+    funcao que retorna a quantidade de bombas na vizinhaca de l e c
+    n - quantidade de bombas
+*/
+int quantBombasVizinhas(int l, int c){
+    /* posicao acima l - 1 e c
+       posicao abaixo l + 1 e c
+       posicao a direita l e c + 1
+       posicao a esquerda l e c - 1
+    */
+    int quantidade = 0;
+    
+    if(coordenadaEhValida(l - 1, c) && jogo[l-1][c].eBomba) //se for valida return 0
+        quantidade++;
+    if(coordenadaEhValida(l + 1, c) && jogo[l+1][c].eBomba) 
+        quantidade++;
+    if(coordenadaEhValida(l, c + 1) && jogo[l][c + 1].eBomba) 
+        quantidade++;
+    if(coordenadaEhValida(l, c - 1) && jogo[l][c - 1].eBomba) 
+        quantidade++;
+    return quantidade;
+}
+
+//procedimento para contar as bombas vizinhas
+void contarBombas(){
+    for(l=0; l < tam; l++){
+        for(c=0; c < tam; c++)
+            jogo[l][c].vizinhos = quantBombasVizinhas(l, c);
+    }
+}
+// Procedimento para imprimir o jogo
+void imprimir(){
+    printf("\n\n\t    ");
+    for(l = 0; l < tam; l++)
+        printf(" %d  ", l);   //indices das colunas
+    printf("\n\t   -----------------------------------------\n");
+    for(l=0; l < tam; l++){
+        printf("\t%d  |", l);  //indices das linhas
+        for(c=0; c < tam; c++){
+            //abriu e se for uma bomba imprime * , se nao imprime a qntd de vizinhos
+            if(jogo[l][c].estaAberta){ 
+                if(jogo[l][c].eBomba)
+                    printf(" * ");
+                else
+                    printf(" %d ", jogo[l][c].vizinhos);
+            }
+            else
+                printf("   ");
+            printf("|");
+        }
+        printf("\n\t   -----------------------------------------\n");
+    }    
+}
+ //procedimento para abrir a coordenada digitada pelo usuario e abrir vizinhos
+void abrirCelula(int l, int c){
+    if(coordenadaEhValida(l, c) == 1 && jogo[l][c].estaAberta == 0){
+    
+    jogo[l][c].estaAberta = 1;
+    if(jogo[l][c].vizinhos == 0){
+        /*
+            vizinho acima l-1 e c
+            vizinho abaixo l+1 e c
+            vizinho direita l e c+1
+            vizinho esquerda l e c-1
+        */
+        abrirCelula(l-1, c);//chamada recursiva para abrir celulas vizinhas
+        abrirCelula(l+1, c);
+        abrirCelula(l, c+1);
+        abrirCelula(l, c-1);
+    }
+ }
+}
+/*
+    funcao para verificar vitoria
+    1- ganhou
+    0- nao ganhou ainda
+*/
+int ganhou(){
+    int quantidade = 0;
+    
+     for(l=0; l < tam; l++){
+        for(c=0; c < tam; c++){
+            if(jogo[l][c].estaAberta == 0 && jogo[l][c].eBomba == 0)//verifica se esta fechada e se este campo nao tem bomba
+                quantidade++;
+        }
+    }
+    return quantidade;//indica se ganhou == 0 e tambem indica quantas posicao fechadas nao sao bombas
+}
+
+
+ // procedimento jogo que faz a leitura das coordenadas
+void jogar(){
+    int linha, coluna;
+    do{
+        imprimir();
+        do{
+            printf("\nDigite as coordenadas de linha e coluna: ");
+            scanf("%d%d", &linha, &coluna);
+        
+            if(coordenadaEhValida(linha, coluna) == 0 || jogo[linha][coluna].estaAberta == 1);
+                printf("\nCoordenada invalida ou já aberta!");
+        }while(coordenadaEhValida(linha, coluna) == 0 || jogo[linha][coluna].estaAberta == 1);//verificar se esta fechada
+        
+        abrirCelula(linha, coluna);
+    }while(ganhou() != 0 && jogo[linha][coluna].eBomba == 0);//vai repetir enquanto ele nao ganhar e enquanto nao abrir bomba
+
+    if(jogo[linha][coluna].eBomba == 1)
+        printf("\n\tGame Over! \n");
+    else
+        printf("\n\t\nVictory!!\n");
+        
+    imprimir();
+}
+
+int main(){
+    int opcao;
+    do{
+        inicializarJogo();
+        sortearBombas(10);
+        contarBombas();
+        printf("\n\t\t\tCAMPO MINADO\n");
+        jogar();
+        
+        printf("\nDigite 1 para jogar novamente: ");
+        scanf("%d", &opcao);
+    }while(opcao == 1);
+    
+    return 0;
+}
+
+
+/*Questão 15*/
+#include <stdio.h>
+#include <stdlib.h>
+#include<time.h>
+#define t 10
+
+void preencher_mat(int mat[t][t]){
+    srand(time (NULL));
+    
+    for(int i=0; i<t; i++){
+       for(int j=0; j<t; j++){
+        mat[i][j]= (rand() % 10);
+       }
+   }
+}
+int main(){
+   
+   int matriz[t][t];
+
+    preencher_mat(matriz);
+    printf(" Imprimindo a matriz com numeros aleatorios de 0 a 9: \n\n");
+     for(int i=0; i<t; i++){
+         printf("\t");
+       for(int j=0; j<t; j++){
+           printf("%d ", matriz[i][j]);
+       }
+       printf("\n");
+   }
+}
+
+
+/*Questão 17*/
+#include <stdio.h>
+
+int strlenn(char *s){
+    int contador=0;
+    while(*s != '\0'){
+        s++;
+        contador++;
+    }
+    return contador-1;
+   
+}
+
+int main(){
+    char str[100];
+    
+    printf("Digite uma string: ");
+    fgets(str, sizeof(str), stdin);
+    
+    printf("-----------------------\n");
+    printf("Tamanho da string: %d\n", strlenn(str));
+    
+    
+}
+
+
+/*Questão 18*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define N 5
+
+// Definindo a estrutura para representar cada item
+typedef struct {
+    int codigo;
+    float valor;
+    char nome[50];
+} Item;
+
+// Função de comparação para ordenar por código
+int compara_codigo(const void *a, const void *b) {
+    return ((Item *)a)->codigo - ((Item *)b)->codigo;
+}
+
+// Função de comparação para ordenar por valor
+int compara_valor(const void *a, const void *b) {
+    float valorA = ((Item *)a)->valor;
+    float valorB = ((Item *)b)->valor;
+    return (valorA > valorB) - (valorA < valorB);
+}
+
+// Função de comparação para ordenar por nome
+int compara_nome(const void *a, const void *b) {
+    return strcmp(((Item *)a)->nome, ((Item *)b)->nome);
+}
+
+// Função para imprimir o vetor de itens
+void imprime_vetor(Item vetor[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d: %.2f, %s\n", vetor[i].codigo, vetor[i].valor, vetor[i].nome);
+    }
+    printf("\n");
+}
+
+int main() {
+    // Criando um vetor de itens
+    Item vetor[N] = {
+        {3, 20.5, "Item C"},
+        {1, 10.0, "Item A"},
+        {2, 15.0, "Item B"},
+        {5, 5.5, "Item E"},
+        {4, 30.2, "Item D"}
+    };
+
+    printf("Vetor original:\n");
+    imprime_vetor(vetor, N);
+
+    // Ordenando por código
+    qsort(vetor, N, sizeof(Item), compara_codigo);
+    printf("Ordenado por código:\n");
+    imprime_vetor(vetor, N);
+
+    // Ordenando por valor
+    qsort(vetor, N, sizeof(Item), compara_valor);
+    printf("Ordenado por valor:\n");
+    imprime_vetor(vetor, N);
+
+    // Ordenando por nome
+    qsort(vetor, N, sizeof(Item), compara_nome);
+    printf("Ordenado por nome:\n");
+    imprime_vetor(vetor, N);
+
+    return 0;
+}
