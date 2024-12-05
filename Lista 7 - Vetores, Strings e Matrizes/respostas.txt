@@ -233,36 +233,47 @@ int main(){
 
 /*Questão 8*/
 #include <stdio.h>
-#include <stdio.h>
 
-void qtds(char *f){
-	int i;
-
-	while(f[i]!='\0'){
-		i++;
-	}
-	
-	printf("A frase '%s' tem %d caracteres", f, i);
-}
-
-int main(){
-	char frase[256];
-	
-	printf("Digite uma frase: ");
-	fgets(frase, 256, stdin);
-	
-	int i=0;
-
-	//a bomba do fgets vem com um \n incluso de natureza, isso é pra remover
-	while (frase[i] != '\0') i++;
-	if (frase[i - 1] == '\n') {
-        frase[i - 1] = '\0';
+/**
+ * Função que calcula o número de caracteres em uma string.
+ * @param s Ponteiro para a string cuja quantidade de caracteres será contada.
+ * @return Número de caracteres na string (excluindo o terminador '\0').
+ */
+int contarCaracteres(const char *s) {
+    int contador = 0;
+    while (*s++) {  // Incrementa o ponteiro e conta enquanto não atingir '\0'
+        contador++;
     }
-
-	qtds(frase);
-	
-	return 0;
+    return contador;
 }
+
+/**
+ * Remove o caractere '\n' ao final da string, caso exista.
+ * @param s Ponteiro para a string que será modificada.
+ */
+void removerNovaLinha(char *s) {
+    int i = 0;
+    while (s[i] != '\0') i++;  // Encontra o índice do terminador '\0'
+    if (i > 0 && s[i - 1] == '\n') {  // Verifica se o último caractere é '\n'
+        s[i - 1] = '\0';  // Remove o '\n'
+    }
+}
+
+int main() {
+    char frase[256];  // String para armazenar a entrada do usuário
+
+    printf("Digite uma frase: ");
+    fgets(frase, sizeof(frase), stdin);  // Lê a frase do usuário
+
+    removerNovaLinha(frase);  // Remove o '\n' adicionado pelo fgets
+
+    int tamanho = contarCaracteres(frase);  // Conta os caracteres da string
+
+    printf("A frase '%s' tem %d caracteres.\n", frase, tamanho);
+
+    return 0;
+}
+
 
 
 /*Questão 9*/
@@ -361,36 +372,45 @@ int main(){
 
 /*Questão 12*/
 #include <stdio.h>
-#define t 3
 
-int main(){
-   int mat[t][t];
-    printf("\tDigite os valores da matriz:\n");
-    for(int i=0; i<t; i++){
-       for(int j=0; j<t; j++){
-           printf(" Posicao [%d][%d]: ",i, j);
-           scanf("%d", &mat[i][j]);
-       }
-   }
-   printf("\n------------------------");
-    printf("\nImprimindo a matriz: \n");
-     for(int i=0; i<t; i++){
-         printf("\t");
-       for(int j=0; j<t; j++){
-           printf("%d ", mat[i][j]);
-       }
-       printf("\n");
-   }
-   printf("------------------------");
-   printf("\nDiagonal da Matriz: \n");
-   for(int i=0; i<t; i++){
-       for(int j=0; j<t; j++){
-           if(j==i)
-           printf(" %d ", mat[i][j]);
-       }
-   }
-   
+int main() {
+    int n;
+
+    // Solicita o tamanho da matriz
+    printf("Digite o tamanho da matriz (n x n): ");
+    scanf("%d", &n);
+
+    // Declaração da matriz
+    int mat[n][n];
+
+    // Leitura dos elementos da matriz
+    printf("\nDigite os valores da matriz:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("Posicao [%d][%d]: ", i, j);
+            scanf("%d", &mat[i][j]);
+        }
+    }
+
+    // Impressão da matriz
+    printf("\nImprimindo a matriz:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%d ", mat[i][j]);
+        }
+        printf("\n");
+    }
+
+    // Exibindo a diagonal principal
+    printf("\nDiagonal Principal da Matriz: \n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", mat[i][i]);  // Elementos da diagonal principal
+    }
+    printf("\n");
+
+    return 0;
 }
+
 
 
 /*Questão 13*/
@@ -616,58 +636,109 @@ int main(){
 /*Questão 15*/
 #include <stdio.h>
 #include <stdlib.h>
-#include<time.h>
-#define t 10
+#include <time.h>
 
-void preencher_mat(int mat[t][t]){
-    srand(time (NULL));
-    
-    for(int i=0; i<t; i++){
-       for(int j=0; j<t; j++){
-        mat[i][j]= (rand() % 10);
-       }
-   }
-}
-int main(){
-   
-   int matriz[t][t];
+#define SIZE 10  // Dimensão da matriz
 
-    preencher_mat(matriz);
-    printf(" Imprimindo a matriz com numeros aleatorios de 0 a 9: \n\n");
-     for(int i=0; i<t; i++){
-         printf("\t");
-       for(int j=0; j<t; j++){
-           printf("%d ", matriz[i][j]);
-       }
-       printf("\n");
-   }
+/**
+ * Função para preencher o campo minado.
+ * @param matriz Matriz 10x10 a ser preenchida.
+ * @param facilidade Nível de facilidade (quanto maior, menos bombas).
+ */
+void gerarCampoMinado(int matriz[SIZE][SIZE], int facilidade) {
+    // Preenche a borda com 1's
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            if (i == 0 || i == SIZE - 1 || j == 0 || j == SIZE - 1) {
+                matriz[i][j] = 1;  // Borda
+            } else {
+                matriz[i][j] = 0;  // Interior começa vazio
+            }
+        }
+    }
+
+    // Determina o número de bombas com base na dificuldade
+    int maxBombas = (SIZE - 2) * (SIZE - 2) / facilidade;
+
+    // Insere bombas aleatoriamente
+    for (int b = 0; b < maxBombas; b++) {
+        int x, y;
+        do {
+            x = rand() % (SIZE - 2) + 1;  // Posição válida (não nas bordas)
+            y = rand() % (SIZE - 2) + 1;
+        } while (matriz[x][y] == 9); // Garante que a posição não tem bomba
+        matriz[x][y] = 9;  // Define bomba
+    }
 }
+
+/**
+ * Função para imprimir a matriz.
+ * @param matriz Matriz 10x10 a ser impressa.
+ */
+void imprimirMatriz(int matriz[SIZE][SIZE]) {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            printf("%2d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int campo[SIZE][SIZE];
+    int facilidade;
+
+    // Inicializa o gerador de números aleatórios
+    srand(time(NULL));
+
+    // Solicita a facilidade do usuário
+    printf("Digite a facilidade (quanto maior, menos bombas): ");
+    scanf("%d", &facilidade);
+
+    // Gera o campo minado
+    gerarCampoMinado(campo, facilidade);
+
+    // Imprime o campo minado
+    printf("\nCampo Minado Gerado:\n");
+    imprimirMatriz(campo);
+
+    return 0;
+}
+
 
 
 /*Questão 17*/
 #include <stdio.h>
 
-int strlenn(char *s){
-    int contador=0;
-    while(*s != '\0'){
+// Função para calcular o comprimento da string usando subtração de ponteiros
+int strlenn(const char *s) {
+    // Inicializa um ponteiro para o início da string
+    const char *inicio = s;
+
+    // Avança o ponteiro até encontrar o caractere nulo '\0' (final da string)
+    while (*s != '\0') {
         s++;
-        contador++;
     }
-    return contador-1;
-   
+
+    // A subtração entre os ponteiros retorna o número de elementos (caracteres)
+    return s - inicio - 1; // Subtraímos 1 para desconsiderar o '\n' capturado pelo fgets
 }
 
-int main(){
+int main() {
+    // Buffer para armazenar a string inserida pelo usuário
     char str[100];
-    
+
+    // Solicita ao usuário que insira uma string
     printf("Digite uma string: ");
-    fgets(str, sizeof(str), stdin);
-    
+    fgets(str, sizeof(str), stdin); // Lê a string, incluindo o '\n'
+
+    // Exibe o tamanho da string usando a função strlenn
     printf("-----------------------\n");
     printf("Tamanho da string: %d\n", strlenn(str));
-    
-    
+
+    return 0;
 }
+
 
 
 /*Questão 18*/
@@ -675,13 +746,14 @@ int main(){
 #include <stdlib.h>
 #include <string.h>
 
+// Define o número de elementos no vetor
 #define N 5
 
-// Definindo a estrutura para representar cada item
+// Estrutura que representa cada item
 typedef struct {
-    int codigo;
-    float valor;
-    char nome[50];
+    int codigo;      // Código identificador do item
+    float valor;     // Valor do item
+    char nome[50];   // Nome do item
 } Item;
 
 // Função de comparação para ordenar por código
@@ -693,24 +765,28 @@ int compara_codigo(const void *a, const void *b) {
 int compara_valor(const void *a, const void *b) {
     float valorA = ((Item *)a)->valor;
     float valorB = ((Item *)b)->valor;
+
+    // Retorna -1, 0 ou 1 para indicar a relação de ordem
     return (valorA > valorB) - (valorA < valorB);
 }
 
 // Função de comparação para ordenar por nome
 int compara_nome(const void *a, const void *b) {
+    // Usa strcmp para comparar strings
     return strcmp(((Item *)a)->nome, ((Item *)b)->nome);
 }
 
-// Função para imprimir o vetor de itens
-void imprime_vetor(Item vetor[], int n) {
+// Função para imprimir os elementos do vetor
+void imprime_vetor(const Item vetor[], int n) {
     for (int i = 0; i < n; i++) {
-        printf("%d: %.2f, %s\n", vetor[i].codigo, vetor[i].valor, vetor[i].nome);
+        printf("Código: %d, Valor: %.2f, Nome: %s\n", 
+               vetor[i].codigo, vetor[i].valor, vetor[i].nome);
     }
     printf("\n");
 }
 
 int main() {
-    // Criando um vetor de itens
+    // Declaração e inicialização do vetor de estruturas
     Item vetor[N] = {
         {3, 20.5, "Item C"},
         {1, 10.0, "Item A"},
@@ -719,20 +795,21 @@ int main() {
         {4, 30.2, "Item D"}
     };
 
+    // Exibe o vetor original
     printf("Vetor original:\n");
     imprime_vetor(vetor, N);
 
-    // Ordenando por código
+    // Ordenação por código
     qsort(vetor, N, sizeof(Item), compara_codigo);
     printf("Ordenado por código:\n");
     imprime_vetor(vetor, N);
 
-    // Ordenando por valor
+    // Ordenação por valor
     qsort(vetor, N, sizeof(Item), compara_valor);
     printf("Ordenado por valor:\n");
     imprime_vetor(vetor, N);
 
-    // Ordenando por nome
+    // Ordenação por nome
     qsort(vetor, N, sizeof(Item), compara_nome);
     printf("Ordenado por nome:\n");
     imprime_vetor(vetor, N);
